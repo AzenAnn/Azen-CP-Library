@@ -1,0 +1,7 @@
+build/
+bin/
+*.out
+!contest/samples/*.out
+a.out
+*.exe
+.vscode/
