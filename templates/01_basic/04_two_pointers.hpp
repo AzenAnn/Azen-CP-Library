@@ -20,7 +20,7 @@
  * 【我的笔记】（学完后用自己的话写：直观理解、易错点、和其他算法的联系）
  *
  * 【题单】（按难度排序，做一道补一道。格式：链接  难度  一句话提示）
- *   https://www.luogu.com.cn/problem/P9950  入门  P9950 [USACO20FEB] Mad Scientist B  考点：双指针 two-pointer
+ *   https://www.luogu.com.cn/problem/P9950  普及−  P9950 [USACO20FEB] Mad Scientist B  考点：双指针 two-pointer
  *   https://codeforces.com/problemset/problem/1462/A  CF800  CF1462A Favorite Sequence  考点：实现、双指针
  *   https://codeforces.com/problemset/problem/1791/C  CF800  CF1791C Prepend and Append  考点：实现、双指针
  *   https://codeforces.com/problemset/problem/381/A  CF800  CF381A Sereja and Dima  考点：贪心、实现、双指针

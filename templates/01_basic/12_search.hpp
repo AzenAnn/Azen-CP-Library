@@ -18,7 +18,7 @@
  *   OI-wiki        https://oi-wiki.org/search/astar/
  *
  * 【模板题 / 入门题】
- *   https://www.luogu.com.cn/problem/P1219  P1219 [USACO1.5] 八皇后
+ *   https://www.luogu.com.cn/problem/P1219  P1219 [USACO1.5] 八皇后 Checker Challenge
  *   https://www.luogu.com.cn/problem/P1135  P1135 奇怪的电梯
  *   https://www.luogu.com.cn/problem/P1605  P1605 迷宫
  *
@@ -40,20 +40,20 @@
  *   与 DP 的关系：记忆化搜索本质上是自顶向下的 DP；搜索 + 剪枝 ≈ 状态压缩 DP。
  *
  * 【题单】（按难度排序，做一道补一道。格式：链接  难度  一句话提示）
- *   https://www.luogu.com.cn/problem/P1036  普及−  P1036 [NOIP2002 普及组] 选数  考点：DFS、回溯、素数判断
- *   https://www.luogu.com.cn/problem/P1141  普及−  P1141 01迷宫  考点：BFS、连通块
+ *   https://www.luogu.com.cn/problem/P1036  普及−  P1036 [NOIP 2002 普及组] 选数  考点：DFS、回溯、素数判断
  *   https://www.luogu.com.cn/problem/P1443  普及−  P1443 马的遍历  考点：BFS
- *   https://www.luogu.com.cn/problem/P1101  普及  P1101 单词方阵  考点：DFS、字符串
- *   https://www.luogu.com.cn/problem/P1162  普及  P1162 填涂颜色  考点：BFS、Flood Fill
- *   https://www.luogu.com.cn/problem/P1219  普及  P1219 [USACO1.5] 八皇后  考点：DFS、回溯、位运算优化
+ *   https://www.luogu.com.cn/problem/P1101  普及−  P1101 单词方阵  考点：DFS、字符串
+ *   https://www.luogu.com.cn/problem/P1162  普及−  P1162 填涂颜色  考点：BFS、Flood Fill
+ *   https://www.luogu.com.cn/problem/P2392  普及−  P2392 kkksc03 考前临时抱佛脚  考点：DFS、背包、贪心
+ *   https://www.luogu.com.cn/problem/P1141  普及  P1141 01迷宫  考点：BFS、连通块
+ *   https://www.luogu.com.cn/problem/P1219  普及  P1219 [USACO1.5] 八皇后 Checker Challenge  考点：DFS、回溯、位运算优化
  *   https://www.luogu.com.cn/problem/P1135  普及  P1135 奇怪的电梯  考点：BFS、最短路
- *   https://www.luogu.com.cn/problem/P2392  普及+/提高−  P2392 kkksc03考前临时抱佛脚  考点：DFS、背包、贪心
- *   https://www.luogu.com.cn/problem/P1103  普及+/提高−  P1103 书本整理  考点：DFS、贪心
+ *   https://www.luogu.com.cn/problem/P1103  普及  P1103 书本整理  考点：DFS、贪心
+ *   https://www.luogu.com.cn/problem/P2327  普及  P2327 [SCOI2005] 扫雷  考点：枚举第一格后逐格递推、可行性检查
+ *   https://www.luogu.com.cn/problem/P1379  普及+/提高−  P1379 八数码难题  考点：BFS、A*、哈希判重
  *   https://codeforces.com/problemset/problem/1741/E  CF1600  CF1741E Sending a Sequence Over the Network  考点：BFS/DFS、DP
  *   https://www.luogu.com.cn/problem/P2324  提高  P2324 [SCOI2005] 骑士精神  考点：IDA*、启发式搜索
- *   https://www.luogu.com.cn/problem/P1379  提高  P1379 八数码难题  考点：BFS、A*、哈希判重
- *   https://www.luogu.com.cn/problem/P1084  提高+/省选−  P1084 [NOIP2012 提高组] 疫情控制  考点：DFS、贪心、倍增
- *   https://www.luogu.com.cn/problem/P2321  省选/NOI−  P2321 [SCOI2005] 扫雷  考点：搜索、剪枝、数论
+ *   https://www.luogu.com.cn/problem/P1084  省选/NOI−  P1084 [NOIP 2012 提高组] 疫情控制  考点：DFS、贪心、倍增
  *
  */
 

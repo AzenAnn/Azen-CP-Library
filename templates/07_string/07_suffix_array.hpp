@@ -15,7 +15,7 @@
  *   灵神模板(Go)   https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/strings.go
  *
  * 【模板题 / 入门题】
- *   https://www.luogu.com.cn/problem/P3809  P3809 【模板】后缀排序
+ *   https://www.luogu.com.cn/problem/P3809  P3809 【模板】后缀排序（SA）
  *   https://judge.yosupo.jp/problem/suffixarray  （Library Checker）
  *
  * 【我的笔记】（学完后用自己的话写：直观理解、易错点、和其他算法的联系）

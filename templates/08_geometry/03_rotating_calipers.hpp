@@ -22,7 +22,7 @@
  *   https://www.luogu.com.cn/problem/P13335  省选/NOI−  P13335 [GCJ 2012 Finals] Twirling Towards Freedom  考点：数学、计算几何、凸包
  *   https://www.luogu.com.cn/problem/P14498  省选/NOI−  P14498 [NCPC 2025] Dune Dash  考点：计算几何、排序、凸包
  *   https://www.luogu.com.cn/problem/P14802  省选/NOI−  P14802 [CCPC 2024 哈尔滨站] 凹包  考点：计算几何、凸包、旋转卡壳
- *   https://www.luogu.com.cn/problem/P16223  省选/NOI−  P16223 【模板】旋转卡壳/最远点对  考点：计算几何、凸包、旋转卡壳
+ *   https://www.luogu.com.cn/problem/P16223  提高+/省选−  P16223 【模板】旋转卡壳/最远点对  考点：计算几何、凸包、旋转卡壳
  *   https://www.luogu.com.cn/problem/P3187  省选/NOI−  P3187 [HNOI2007] 最小矩形覆盖  考点：枚举、凸包、旋转卡壳
  *   https://www.luogu.com.cn/problem/P4166  省选/NOI−  P4166 [SCOI2007] 最大土地面积  考点：枚举、向量、凸包
  *   https://www.luogu.com.cn/problem/P4357  省选/NOI−  P4357 [CQOI2016] K 远点对  考点：旋转卡壳

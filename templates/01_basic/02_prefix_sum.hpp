@@ -28,7 +28,7 @@
  *   https://www.luogu.com.cn/problem/P3717  入门  P3717 [AHOI2017初中组] cover  考点：模拟、搜索、枚举
  *   https://www.luogu.com.cn/problem/P4702  入门  P4702 取石子  考点：博弈论、进制、前缀和
  *   https://www.luogu.com.cn/problem/P1496  普及−  P1496 火烧赤壁  考点：模拟、离散化、排序
- *   https://www.luogu.com.cn/problem/P2345  普及−  P2345 [USACO04OPEN] MooFest G  考点：模拟、枚举
+ *   https://www.luogu.com.cn/problem/P2345  入门  P2345 [USACO04OPEN] MooFest G  考点：模拟、枚举
  *   https://www.luogu.com.cn/problem/P2367  普及−  P2367 语文成绩  考点：差分
  *   https://codeforces.com/problemset/problem/1921/D  CF1100  CF1921D Very Different Array  考点：数据结构、贪心、排序
  *   https://www.luogu.com.cn/problem/P1083  普及  P1083 [NOIP 2012 提高组] 借教室  考点：线段树、二分、前缀和

@@ -19,7 +19,7 @@
  *
  * 【题单】（按难度排序，做一道补一道。格式：链接  难度  一句话提示）
  *   https://www.luogu.com.cn/problem/P1447  提高  P1447 [NOI2010] 能量采集  考点：数学、最大公约数 gcd、莫比乌斯反演
- *   https://www.luogu.com.cn/problem/P3911  提高  P3911 最小公倍数之和  考点：数学、莫比乌斯反演
+ *   https://www.luogu.com.cn/problem/P3911  提高+/省选−  P3911 最小公倍数之和  考点：数学、莫比乌斯反演
  *   https://www.luogu.com.cn/problem/P3935  提高  P3935 Calculating  考点：数学、整除分块
  *   https://www.luogu.com.cn/problem/P4450  提高  P4450 双亲数  考点：数学、莫比乌斯反演、容斥原理
  *   https://www.luogu.com.cn/problem/P6583  提高  P6583 回首过去  考点：数论、整除分块

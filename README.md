@@ -169,19 +169,19 @@ Azen-CP-Library/
 
 <!-- INDEX:START -->
 
-共 **140** 个专题：✅ 已完成 105，⬜ 待实现 28，📝 笔记 7；题单中已收录 **1663** 道题。
+共 **140** 个专题：✅ 已完成 133，⬜ 待实现 0，📝 笔记 7；题单中已收录 **1686** 道题。
 
 | 专题 | 已完成 | 待实现 | 笔记 | 题单 | 进度 |
 |---|:---:|:---:|:---:|:---:|---|
 | [01_basic 基础算法](#01_basic) | 8 | 0 | 5 | 187 | ██████████ |
-| [02_ds 数据结构](#02_ds) | 20 | 4 | 0 | 308 | ████████░░ |
-| [03_graph 图论](#03_graph) | 17 | 5 | 0 | 239 | ████████░░ |
-| [04_tree 树](#04_tree) | 11 | 2 | 0 | 156 | ████████░░ |
-| [05_math 数学](#05_math) | 19 | 8 | 0 | 301 | ███████░░░ |
-| [06_dp 动态规划](#06_dp) | 11 | 4 | 1 | 192 | ████████░░ |
-| [07_string 字符串](#07_string) | 9 | 2 | 0 | 131 | ████████░░ |
-| [08_geometry 计算几何](#08_geometry) | 8 | 2 | 0 | 97 | ████████░░ |
-| [09_misc 杂项](#09_misc) | 2 | 1 | 1 | 52 | ████████░░ |
+| [02_ds 数据结构](#02_ds) | 24 | 0 | 0 | 316 | ██████████ |
+| [03_graph 图论](#03_graph) | 22 | 0 | 0 | 233 | ██████████ |
+| [04_tree 树](#04_tree) | 13 | 0 | 0 | 155 | ██████████ |
+| [05_math 数学](#05_math) | 27 | 0 | 0 | 313 | ██████████ |
+| [06_dp 动态规划](#06_dp) | 15 | 0 | 1 | 204 | ██████████ |
+| [07_string 字符串](#07_string) | 11 | 0 | 0 | 133 | ██████████ |
+| [08_geometry 计算几何](#08_geometry) | 10 | 0 | 0 | 92 | ██████████ |
+| [09_misc 杂项](#09_misc) | 3 | 0 | 1 | 53 | ██████████ |
 
 <a id="01_basic"></a>
 
@@ -205,7 +205,7 @@ Azen-CP-Library/
 
 <a id="02_ds"></a>
 
-### 02_ds 数据结构（20/24）
+### 02_ds 数据结构（24/24）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
@@ -229,14 +229,14 @@ Azen-CP-Library/
 | 18 | [线段树分治（离线删边）](templates/02_ds/18_segment_tree_divide.hpp) | ★★★ | 02_ds/04 并查集、02_ds/07 线段树（含懒标记） | ✅ 已完成 | 7 |
 | 19 | [可并堆（左偏树）](templates/02_ds/19_leftist_tree.hpp) | ★★★★ | 02_ds/03 堆与优先队列 | ✅ 已完成 | 12 |
 | 20 | [Link-Cut Tree](templates/02_ds/20_lct.hpp) | ★★★★ | 02_ds/14 平衡树、04_tree/05 树链剖分 | ✅ 已完成 | 15 |
-| 21 | [李超线段树](templates/02_ds/21_li_chao_tree.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ⬜ 待实现 | 8 |
-| 22 | [线段树合并与分裂](templates/02_ds/22_seg_merge_split.hpp) | ★★★★ | 02_ds/12 线段树进阶、02_ds/15 可持久化数据结构 | ⬜ 待实现 | 8 |
-| 23 | [树套树](templates/02_ds/23_tree_in_tree.hpp) | ★★★★ | 02_ds/12 线段树进阶、02_ds/14 平衡树 | ⬜ 待实现 | 8 |
-| 24 | [K-D Tree](templates/02_ds/24_kdtree.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ⬜ 待实现 | 8 |
+| 21 | [李超线段树](templates/02_ds/21_li_chao_tree.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ✅ 已完成 | 10 |
+| 22 | [线段树合并与分裂](templates/02_ds/22_seg_merge_split.hpp) | ★★★★ | 02_ds/12 线段树进阶、02_ds/15 可持久化数据结构 | ✅ 已完成 | 11 |
+| 23 | [树套树](templates/02_ds/23_tree_in_tree.hpp) | ★★★★ | 02_ds/12 线段树进阶、02_ds/14 平衡树 | ✅ 已完成 | 9 |
+| 24 | [K-D Tree](templates/02_ds/24_kdtree.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ✅ 已完成 | 10 |
 
 <a id="03_graph"></a>
 
-### 03_graph 图论（17/22）
+### 03_graph 图论（22/22）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
@@ -256,16 +256,16 @@ Azen-CP-Library/
 | 14 | [网络流：最大流与最小割](templates/03_graph/14_max_flow.hpp) | ★★★ | 03_graph/03 最短路 | ✅ 已完成 | 15 |
 | 15 | [最小费用最大流](templates/03_graph/15_min_cost_flow.hpp) | ★★★★ | 03_graph/14 网络流：最大流与最小割 | ✅ 已完成 | 15 |
 | 16 | [最小割树（Gomory-Hu Tree）](templates/03_graph/16_gomory_hu.hpp) | ★★★★ | 03_graph/14 网络流：最大流与最小割 | ✅ 已完成 | 5 |
-| 17 | [K 短路](templates/03_graph/17_kth_path.hpp) | ★★★ | 03_graph/03 最短路 | ⬜ 待实现 | 6 |
-| 18 | [最小树形图（朱刘算法 / Edmonds）](templates/03_graph/18_dmst.hpp) | ★★★★ | 03_graph/05 最小生成树 | ⬜ 待实现 | 6 |
-| 19 | [上下界网络流](templates/03_graph/19_flow_bound.hpp) | ★★★★ | 03_graph/14 网络流：最大流与最小割 | ⬜ 待实现 | 6 |
-| 20 | [一般图匹配（带花树 Blossom）](templates/03_graph/20_general_match.hpp) | ★★★★ | 03_graph/09 二分图 | ⬜ 待实现 | 6 |
-| 21 | [圆方树](templates/03_graph/21_block_forest.hpp) | ★★★★ | 03_graph/08 割点、桥与双连通分量 | ⬜ 待实现 | 7 |
+| 17 | [K 短路](templates/03_graph/17_kth_path.hpp) | ★★★ | 03_graph/03 最短路 | ✅ 已完成 | 4 |
+| 18 | [最小树形图（朱刘算法 / Edmonds）](templates/03_graph/18_dmst.hpp) | ★★★★ | 03_graph/05 最小生成树 | ✅ 已完成 | 3 |
+| 19 | [上下界网络流](templates/03_graph/19_flow_bound.hpp) | ★★★★ | 03_graph/14 网络流：最大流与最小割 | ✅ 已完成 | 6 |
+| 20 | [一般图匹配（带花树 Blossom）](templates/03_graph/20_general_match.hpp) | ★★★★ | 03_graph/09 二分图 | ✅ 已完成 | 2 |
+| 21 | [圆方树](templates/03_graph/21_block_forest.hpp) | ★★★★ | 03_graph/08 割点、桥与双连通分量 | ✅ 已完成 | 10 |
 | 22 | [支配树](templates/03_graph/22_dominator_tree.hpp) | ★★★★ | 03_graph/02 拓扑排序、04_tree/02 最近公共祖先（LCA） | ✅ 已完成 | 3 |
 
 <a id="04_tree"></a>
 
-### 04_tree 树（11/13）
+### 04_tree 树（13/13）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
@@ -280,12 +280,12 @@ Azen-CP-Library/
 | 09 | [Prüfer 序列](templates/04_tree/09_prufer.hpp) | ★★★ | 04_tree/01 树的基础：直径、重心、DFS 序、05_math/05 组合数与计数原理 | ✅ 已完成 | 9 |
 | 10 | [点分治](templates/04_tree/10_centroid_decomp.hpp) | ★★★★ | 04_tree/01 树的基础：直径、重心、DFS 序、01_basic/10 分治 | ✅ 已完成 | 15 |
 | 11 | [虚树](templates/04_tree/11_virtual_tree.hpp) | ★★★★ | 04_tree/02 最近公共祖先（LCA） | ✅ 已完成 | 15 |
-| 12 | [动态点分治（点分树）](templates/04_tree/12_dynamic_tree_divide.hpp) | ★★★★ | 04_tree/10 点分治 | ⬜ 待实现 | 6 |
-| 13 | [树上随机游走](templates/04_tree/13_tree_random_walk.hpp) | ★★★★ | 04_tree/01 树的基础：直径、重心、DFS 序、06_dp/09 概率与期望 DP | ⬜ 待实现 | 6 |
+| 12 | [动态点分治（点分树）](templates/04_tree/12_dynamic_tree_divide.hpp) | ★★★★ | 04_tree/10 点分治 | ✅ 已完成 | 6 |
+| 13 | [树上随机游走](templates/04_tree/13_tree_random_walk.hpp) | ★★★★ | 04_tree/01 树的基础：直径、重心、DFS 序、06_dp/09 概率与期望 DP | ✅ 已完成 | 5 |
 
 <a id="05_math"></a>
 
-### 05_math 数学（19/27）
+### 05_math 数学（27/27）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
@@ -306,20 +306,20 @@ Azen-CP-Library/
 | 15 | [离散对数 BSGS](templates/05_math/15_bsgs.hpp) | ★★★★ | 05_math/04 乘法逆元 | ✅ 已完成 | 13 |
 | 16 | [Miller-Rabin 与 Pollard-Rho](templates/05_math/16_pollard_rho.hpp) | ★★★★ | 05_math/03 素数、筛法与分解质因数 | ✅ 已完成 | 8 |
 | 17 | [FFT / NTT 多项式乘法](templates/05_math/17_fft_ntt.hpp) | ★★★★ | 05_math/01 取模运算与快速幂 | ✅ 已完成 | 15 |
-| 18 | [Lucas 定理与扩展 Lucas](templates/05_math/18_lucas.hpp) | ★★★ | 05_math/05 组合数与计数原理 | ⬜ 待实现 | 6 |
-| 19 | [阶与原根](templates/05_math/19_primitive_root.hpp) | ★★★ | 05_math/07 欧拉函数与欧拉定理、05_math/01 取模运算与快速幂 | ⬜ 待实现 | 6 |
-| 20 | [卡特兰数与斯特林数](templates/05_math/20_catalan.hpp) | ★★★ | 05_math/05 组合数与计数原理 | ⬜ 待实现 | 8 |
+| 18 | [Lucas 定理与扩展 Lucas](templates/05_math/18_lucas.hpp) | ★★★ | 05_math/05 组合数与计数原理 | ✅ 已完成 | 9 |
+| 19 | [阶与原根](templates/05_math/19_primitive_root.hpp) | ★★★ | 05_math/07 欧拉函数与欧拉定理、05_math/01 取模运算与快速幂 | ✅ 已完成 | 7 |
+| 20 | [卡特兰数与斯特林数](templates/05_math/20_catalan.hpp) | ★★★ | 05_math/05 组合数与计数原理 | ✅ 已完成 | 12 |
 | 21 | [二项式反演](templates/05_math/21_binomial_inversion.hpp) | ★★★ | 05_math/05 组合数与计数原理、05_math/06 康托展开、错排与约瑟夫问题 | ✅ 已完成 | 6 |
 | 22 | [Burnside 引理与 Pólya 定理](templates/05_math/22_burnside_polya.hpp) | ★★★★ | 05_math/07 欧拉函数与欧拉定理、05_math/04 乘法逆元 | ✅ 已完成 | 7 |
-| 23 | [杜教筛](templates/05_math/23_du_sieve.hpp) | ★★★★ | 05_math/14 莫比乌斯反演 | ⬜ 待实现 | 6 |
-| 24 | [FWT（快速沃尔什变换）](templates/05_math/24_fwt.hpp) | ★★★★ | 05_math/17 FFT / NTT 多项式乘法 | ⬜ 待实现 | 6 |
-| 25 | [多项式进阶（牛顿迭代、逆元/开方/ln/exp）](templates/05_math/25_poly_ops.hpp) | ★★★★ | 05_math/17 FFT / NTT 多项式乘法 | ⬜ 待实现 | 7 |
-| 26 | [单纯形法（线性规划）](templates/05_math/26_simplex.hpp) | ★★★★ | 05_math/10 高斯消元 | ⬜ 待实现 | 6 |
-| 27 | [拉格朗日插值](templates/05_math/27_lagrange_interp.hpp) | ★★★ | 05_math/02 GCD 与扩展欧几里得、05_math/04 乘法逆元 | ⬜ 待实现 | 6 |
+| 23 | [杜教筛](templates/05_math/23_du_sieve.hpp) | ★★★★ | 05_math/14 莫比乌斯反演 | ✅ 已完成 | 6 |
+| 24 | [FWT（快速沃尔什变换）](templates/05_math/24_fwt.hpp) | ★★★★ | 05_math/17 FFT / NTT 多项式乘法 | ✅ 已完成 | 9 |
+| 25 | [多项式进阶（牛顿迭代、逆元/开方/ln/exp）](templates/05_math/25_poly_ops.hpp) | ★★★★ | 05_math/17 FFT / NTT 多项式乘法 | ✅ 已完成 | 8 |
+| 26 | [单纯形法（线性规划）](templates/05_math/26_simplex.hpp) | ★★★★ | 05_math/10 高斯消元 | ✅ 已完成 | 5 |
+| 27 | [拉格朗日插值](templates/05_math/27_lagrange_interp.hpp) | ★★★ | 05_math/02 GCD 与扩展欧几里得、05_math/04 乘法逆元 | ✅ 已完成 | 7 |
 
 <a id="06_dp"></a>
 
-### 06_dp 动态规划（11/16）
+### 06_dp 动态规划（15/16）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
@@ -334,15 +334,15 @@ Azen-CP-Library/
 | 09 | [概率与期望 DP](templates/06_dp/09_dp_expectation.hpp) | ★★★ | 06_dp/01 线性 DP 入门与记忆化搜索 | ✅ 已完成 | 15 |
 | 10 | [斜率优化与凸包技巧](templates/06_dp/10_dp_opt_slope.hpp) | ★★★★ | 06_dp/08 单调队列 / 单调栈优化 DP | ✅ 已完成 | 15 |
 | 11 | [四边形不等式与决策单调性](templates/06_dp/11_dp_opt_quadrangle.hpp) | ★★★★ | 06_dp/04 区间 DP | ✅ 已完成 | 15 |
-| 12 | [插头 DP（轮廓线 DP）](templates/06_dp/12_plug_dp.hpp) | ★★★★ | 06_dp/06 状压 DP | ⬜ 待实现 | 6 |
+| 12 | [插头 DP（轮廓线 DP）](templates/06_dp/12_plug_dp.hpp) | ★★★★ | 06_dp/06 状压 DP | ✅ 已完成 | 9 |
 | 13 | [最小斯坦纳树](templates/06_dp/13_steiner_tree.hpp) | ★★★★ | 06_dp/06 状压 DP、03_graph/03 最短路 | ✅ 已完成 | 4 |
-| 14 | [动态 DP](templates/06_dp/14_dynamic_dp.hpp) | ★★★★ | 06_dp/05 树形 DP 与换根 DP、05_math/08 矩阵与矩阵快速幂 | ⬜ 待实现 | 6 |
-| 15 | [DP 套 DP](templates/06_dp/15_dp_of_dp.hpp) | ★★★★ | 06_dp/06 状压 DP、06_dp/01 线性 DP 入门与记忆化搜索 | ⬜ 待实现 | 6 |
-| 16 | [WQS 二分与 Slope Trick](templates/06_dp/16_wqs_slope_trick.hpp) | ★★★★ | 06_dp/10 斜率优化与凸包技巧 | ⬜ 待实现 | 7 |
+| 14 | [动态 DP](templates/06_dp/14_dynamic_dp.hpp) | ★★★★ | 06_dp/05 树形 DP 与换根 DP、05_math/08 矩阵与矩阵快速幂 | ✅ 已完成 | 8 |
+| 15 | [DP 套 DP](templates/06_dp/15_dp_of_dp.hpp) | ★★★★ | 06_dp/06 状压 DP、06_dp/01 线性 DP 入门与记忆化搜索 | ✅ 已完成 | 6 |
+| 16 | [WQS 二分与 Slope Trick](templates/06_dp/16_wqs_slope_trick.hpp) | ★★★★ | 06_dp/10 斜率优化与凸包技巧 | ✅ 已完成 | 14 |
 
 <a id="07_string"></a>
 
-### 07_string 字符串（9/11）
+### 07_string 字符串（11/11）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
@@ -355,12 +355,12 @@ Azen-CP-Library/
 | 07 | [后缀数组](templates/07_string/07_suffix_array.hpp) | ★★★★ | 01_basic/05 排序与离散化 | ✅ 已完成 | 15 |
 | 08 | [后缀自动机（SAM）](templates/07_string/08_sam.hpp) | ★★★★ | 07_string/07 后缀数组 | ✅ 已完成 | 15 |
 | 09 | [回文自动机（PAM）](templates/07_string/09_pam.hpp) | ★★★★ | 07_string/04 Manacher 最长回文子串 | ✅ 已完成 | 12 |
-| 10 | [广义 SAM](templates/07_string/10_general_sam.hpp) | ★★★★ | 07_string/08 后缀自动机（SAM） | ⬜ 待实现 | 6 |
-| 11 | [序列自动机](templates/07_string/11_seq_automaton.hpp) | ★★★ | 07_string/08 后缀自动机（SAM） | ⬜ 待实现 | 6 |
+| 10 | [广义 SAM](templates/07_string/10_general_sam.hpp) | ★★★★ | 07_string/08 后缀自动机（SAM） | ✅ 已完成 | 9 |
+| 11 | [序列自动机](templates/07_string/11_seq_automaton.hpp) | ★★★ | 07_string/08 后缀自动机（SAM） | ✅ 已完成 | 5 |
 
 <a id="08_geometry"></a>
 
-### 08_geometry 计算几何（8/10）
+### 08_geometry 计算几何（10/10）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
@@ -372,19 +372,19 @@ Azen-CP-Library/
 | 06 | [半平面交](templates/08_geometry/06_half_plane.hpp) | ★★★★ | 08_geometry/01 点、向量与基本运算 | ✅ 已完成 | 11 |
 | 07 | [圆的基本计算](templates/08_geometry/07_circle.hpp) | ★★★ | 08_geometry/01 点、向量与基本运算 | ✅ 已完成 | 6 |
 | 08 | [自适应 Simpson 积分](templates/08_geometry/08_simpson.hpp) | ★★★ | 08_geometry/07 圆的基本计算 | ✅ 已完成 | 4 |
-| 09 | [三维几何](templates/08_geometry/09_3d.hpp) | ★★★★ | 08_geometry/01 点、向量与基本运算 | ⬜ 待实现 | 6 |
-| 10 | [最小圆覆盖](templates/08_geometry/10_min_circle.hpp) | ★★★ | 08_geometry/01 点、向量与基本运算 | ⬜ 待实现 | 6 |
+| 09 | [三维几何](templates/08_geometry/09_3d.hpp) | ★★★★ | 08_geometry/01 点、向量与基本运算 | ✅ 已完成 | 4 |
+| 10 | [最小圆覆盖](templates/08_geometry/10_min_circle.hpp) | ★★★ | 08_geometry/01 点、向量与基本运算 | ✅ 已完成 | 3 |
 
 <a id="09_misc"></a>
 
-### 09_misc 杂项（2/4）
+### 09_misc 杂项（3/4）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
 | 01 | [随机数与防卡哈希](templates/09_misc/01_random_hash.hpp) | ★★ | 无 | ✅ 已完成 | 15 |
 | 02 | [交互题](templates/09_misc/02_interactive.hpp) | ★★ | 01_basic/03 二分查找、二分答案与三分 | 📝 笔记 | 15 |
 | 03 | [模拟退火](templates/09_misc/03_simulated_annealing.hpp) | ★★★ | 09_misc/01 随机数与防卡哈希 | ✅ 已完成 | 15 |
-| 04 | [折半搜索 / Meet in the Middle](templates/09_misc/04_meet_in_middle.hpp) | ★★ | 01_basic/03 二分查找、二分答案与三分、01_basic/12 搜索：DFS、BFS、剪枝 | ⬜ 待实现 | 7 |
+| 04 | [折半搜索 / Meet in the Middle](templates/09_misc/04_meet_in_middle.hpp) | ★★ | 01_basic/03 二分查找、二分答案与三分、01_basic/12 搜索：DFS、BFS、剪枝 | ✅ 已完成 | 8 |
 
 <!-- INDEX:END -->
 

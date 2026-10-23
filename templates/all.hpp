@@ -1,5 +1,5 @@
 // 自动生成：python tools/gen_all.py；新增 DONE 模板后重新运行。
-// 共 105 个已实现模板，面向 GNU C++17 单文件竞赛程序。
+// 共 133 个已实现模板，面向 GNU C++17 单文件竞赛程序。
 // 在 contest/*.cpp 中使用：#include "../templates/all.hpp"
 // 已包含标准库和类型别名；无需再次引入各专题头文件。
 #pragma once
@@ -41,6 +41,10 @@ using pii = pair<int, int>;
 #include "02_ds/18_segment_tree_divide.hpp"
 #include "02_ds/19_leftist_tree.hpp"
 #include "02_ds/20_lct.hpp"
+#include "02_ds/21_li_chao_tree.hpp"
+#include "02_ds/22_seg_merge_split.hpp"
+#include "02_ds/23_tree_in_tree.hpp"
+#include "02_ds/24_kdtree.hpp"
 
 // 03_graph
 #include "03_graph/01_graph_basic.hpp"
@@ -59,6 +63,11 @@ using pii = pair<int, int>;
 #include "03_graph/14_max_flow.hpp"
 #include "03_graph/15_min_cost_flow.hpp"
 #include "03_graph/16_gomory_hu.hpp"
+#include "03_graph/17_kth_path.hpp"
+#include "03_graph/18_dmst.hpp"
+#include "03_graph/19_flow_bound.hpp"
+#include "03_graph/20_general_match.hpp"
+#include "03_graph/21_block_forest.hpp"
 #include "03_graph/22_dominator_tree.hpp"
 
 // 04_tree
@@ -73,6 +82,8 @@ using pii = pair<int, int>;
 #include "04_tree/09_prufer.hpp"
 #include "04_tree/10_centroid_decomp.hpp"
 #include "04_tree/11_virtual_tree.hpp"
+#include "04_tree/12_dynamic_tree_divide.hpp"
+#include "04_tree/13_tree_random_walk.hpp"
 
 // 05_math
 #include "05_math/01_modint.hpp"
@@ -92,8 +103,16 @@ using pii = pair<int, int>;
 #include "05_math/15_bsgs.hpp"
 #include "05_math/16_pollard_rho.hpp"
 #include "05_math/17_fft_ntt.hpp"
+#include "05_math/18_lucas.hpp"
+#include "05_math/19_primitive_root.hpp"
+#include "05_math/20_catalan.hpp"
 #include "05_math/21_binomial_inversion.hpp"
 #include "05_math/22_burnside_polya.hpp"
+#include "05_math/23_du_sieve.hpp"
+#include "05_math/24_fwt.hpp"
+#include "05_math/25_poly_ops.hpp"
+#include "05_math/26_simplex.hpp"
+#include "05_math/27_lagrange_interp.hpp"
 
 // 06_dp
 #include "06_dp/02_lis_lcs.hpp"
@@ -106,7 +125,11 @@ using pii = pair<int, int>;
 #include "06_dp/09_dp_expectation.hpp"
 #include "06_dp/10_dp_opt_slope.hpp"
 #include "06_dp/11_dp_opt_quadrangle.hpp"
+#include "06_dp/12_plug_dp.hpp"
 #include "06_dp/13_steiner_tree.hpp"
+#include "06_dp/14_dynamic_dp.hpp"
+#include "06_dp/15_dp_of_dp.hpp"
+#include "06_dp/16_wqs_slope_trick.hpp"
 
 // 07_string
 #include "07_string/01_string_hash.hpp"
@@ -118,6 +141,8 @@ using pii = pair<int, int>;
 #include "07_string/07_suffix_array.hpp"
 #include "07_string/08_sam.hpp"
 #include "07_string/09_pam.hpp"
+#include "07_string/10_general_sam.hpp"
+#include "07_string/11_seq_automaton.hpp"
 
 // 08_geometry
 #include "08_geometry/01_geo_basic.hpp"
@@ -128,7 +153,10 @@ using pii = pair<int, int>;
 #include "08_geometry/06_half_plane.hpp"
 #include "08_geometry/07_circle.hpp"
 #include "08_geometry/08_simpson.hpp"
+#include "08_geometry/09_3d.hpp"
+#include "08_geometry/10_min_circle.hpp"
 
 // 09_misc
 #include "09_misc/01_random_hash.hpp"
 #include "09_misc/03_simulated_annealing.hpp"
+#include "09_misc/04_meet_in_middle.hpp"
