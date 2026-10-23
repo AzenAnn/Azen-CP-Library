@@ -1,0 +1,134 @@
+// 自动生成：python tools/gen_all.py；新增 DONE 模板后重新运行。
+// 共 105 个已实现模板，面向 GNU C++17 单文件竞赛程序。
+// 在 contest/*.cpp 中使用：#include "../templates/all.hpp"
+// 已包含标准库和类型别名；无需再次引入各专题头文件。
+#pragma once
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using pii = pair<int, int>;
+
+// 01_basic
+#include "01_basic/01_io.hpp"
+#include "01_basic/02_prefix_sum.hpp"
+#include "01_basic/03_binary_search.hpp"
+#include "01_basic/04_two_pointers.hpp"
+#include "01_basic/05_sort_discrete.hpp"
+#include "01_basic/06_bits.hpp"
+#include "01_basic/08_bignum.hpp"
+#include "01_basic/13_frac_programming.hpp"
+
+// 02_ds
+#include "02_ds/01_stack_monotone.hpp"
+#include "02_ds/02_monotone_queue.hpp"
+#include "02_ds/03_heap.hpp"
+#include "02_ds/04_dsu.hpp"
+#include "02_ds/05_sparse_table.hpp"
+#include "02_ds/06_fenwick.hpp"
+#include "02_ds/07_segment_tree.hpp"
+#include "02_ds/08_trie.hpp"
+#include "02_ds/09_cartesian_tree.hpp"
+#include "02_ds/10_sqrt_decomposition.hpp"
+#include "02_ds/11_mo.hpp"
+#include "02_ds/12_segment_tree_adv.hpp"
+#include "02_ds/13_segment_tree_beats.hpp"
+#include "02_ds/14_balanced_tree.hpp"
+#include "02_ds/15_persistent.hpp"
+#include "02_ds/16_odt.hpp"
+#include "02_ds/17_cdq_offline.hpp"
+#include "02_ds/18_segment_tree_divide.hpp"
+#include "02_ds/19_leftist_tree.hpp"
+#include "02_ds/20_lct.hpp"
+
+// 03_graph
+#include "03_graph/01_graph_basic.hpp"
+#include "03_graph/02_topo.hpp"
+#include "03_graph/03_shortest_path.hpp"
+#include "03_graph/04_min_cycle.hpp"
+#include "03_graph/05_mst.hpp"
+#include "03_graph/06_matrix_tree.hpp"
+#include "03_graph/07_scc.hpp"
+#include "03_graph/08_bcc.hpp"
+#include "03_graph/09_bipartite.hpp"
+#include "03_graph/10_km.hpp"
+#include "03_graph/11_diff_constraints.hpp"
+#include "03_graph/12_two_sat.hpp"
+#include "03_graph/13_euler.hpp"
+#include "03_graph/14_max_flow.hpp"
+#include "03_graph/15_min_cost_flow.hpp"
+#include "03_graph/16_gomory_hu.hpp"
+#include "03_graph/22_dominator_tree.hpp"
+
+// 04_tree
+#include "04_tree/01_tree_basic.hpp"
+#include "04_tree/02_lca.hpp"
+#include "04_tree/03_tree_diff.hpp"
+#include "04_tree/04_pseudo_tree.hpp"
+#include "04_tree/05_hld.hpp"
+#include "04_tree/06_long_chain.hpp"
+#include "04_tree/07_dsu_on_tree.hpp"
+#include "04_tree/08_tree_hash.hpp"
+#include "04_tree/09_prufer.hpp"
+#include "04_tree/10_centroid_decomp.hpp"
+#include "04_tree/11_virtual_tree.hpp"
+
+// 05_math
+#include "05_math/01_modint.hpp"
+#include "05_math/02_gcd.hpp"
+#include "05_math/03_prime_sieve.hpp"
+#include "05_math/04_inverse.hpp"
+#include "05_math/05_combinatorics.hpp"
+#include "05_math/06_perm_counting.hpp"
+#include "05_math/07_euler_phi.hpp"
+#include "05_math/08_matrix.hpp"
+#include "05_math/09_crt.hpp"
+#include "05_math/10_gauss.hpp"
+#include "05_math/11_linear_basis.hpp"
+#include "05_math/12_number_block.hpp"
+#include "05_math/13_game.hpp"
+#include "05_math/14_mobius.hpp"
+#include "05_math/15_bsgs.hpp"
+#include "05_math/16_pollard_rho.hpp"
+#include "05_math/17_fft_ntt.hpp"
+#include "05_math/21_binomial_inversion.hpp"
+#include "05_math/22_burnside_polya.hpp"
+
+// 06_dp
+#include "06_dp/02_lis_lcs.hpp"
+#include "06_dp/03_knapsack.hpp"
+#include "06_dp/04_interval_dp.hpp"
+#include "06_dp/05_tree_dp.hpp"
+#include "06_dp/06_bitmask_dp.hpp"
+#include "06_dp/07_digit_dp.hpp"
+#include "06_dp/08_dp_opt_monoqueue.hpp"
+#include "06_dp/09_dp_expectation.hpp"
+#include "06_dp/10_dp_opt_slope.hpp"
+#include "06_dp/11_dp_opt_quadrangle.hpp"
+#include "06_dp/13_steiner_tree.hpp"
+
+// 07_string
+#include "07_string/01_string_hash.hpp"
+#include "07_string/02_kmp.hpp"
+#include "07_string/03_z_function.hpp"
+#include "07_string/04_manacher.hpp"
+#include "07_string/05_min_repr.hpp"
+#include "07_string/06_ac_automaton.hpp"
+#include "07_string/07_suffix_array.hpp"
+#include "07_string/08_sam.hpp"
+#include "07_string/09_pam.hpp"
+
+// 08_geometry
+#include "08_geometry/01_geo_basic.hpp"
+#include "08_geometry/02_convex_hull.hpp"
+#include "08_geometry/03_rotating_calipers.hpp"
+#include "08_geometry/04_scanline.hpp"
+#include "08_geometry/05_closest_pair.hpp"
+#include "08_geometry/06_half_plane.hpp"
+#include "08_geometry/07_circle.hpp"
+#include "08_geometry/08_simpson.hpp"
+
+// 09_misc
+#include "09_misc/01_random_hash.hpp"
+#include "09_misc/03_simulated_annealing.hpp"

@@ -1,7 +1,15 @@
+# 编译产物
 build/
 bin/
 *.out
 !contest/samples/*.out
 a.out
 *.exe
+
+# 编辑器、插件的本地文件
 .vscode/
+.cph/
+.clangd
+
+# 用 CPH 抓下来的题目代码（只忽略仓库根目录下的 .cpp）
+/*.cpp

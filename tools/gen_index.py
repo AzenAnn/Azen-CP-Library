@@ -18,7 +18,7 @@ def parse(path):
     text = open(path, encoding='utf-8').read()
     head = text.split('*/', 1)[0]
     lines = [l.strip().lstrip('*').strip() for l in head.splitlines()]
-    info = {'path': os.path.relpath(path, ROOT), 'title': '', 'level': 0, 'prereq': '无', 'status': '?', 'problems': 0}
+    info = {'path': os.path.relpath(path, ROOT).replace(os.sep, '/'), 'title': '', 'level': 0, 'prereq': '无', 'status': '?', 'problems': 0}
     m = re.match(r'(\S+)\s+(.*)', lines[1]) if len(lines) > 1 else None
     if m:
         info['code'], info['title'] = m.group(1), m.group(2)
@@ -45,6 +45,8 @@ def collect():
         if not os.path.isdir(os.path.join(tdir, d)):
             continue
         items = [parse(os.path.join(tdir, d, f)) for f in sorted(os.listdir(os.path.join(tdir, d))) if f.endswith('.hpp')]
+        if not items:   # 空目录（如 00_languages）不列出
+            continue
         topics.append((d, TOPIC_NAMES.get(d, d), items))
     return topics
 
@@ -58,10 +60,17 @@ def main():
     allitems = [it for _, _, items in topics for it in items]
     cnt = {s: sum(1 for it in allitems if it['status'] == s) for s in STATUS_MARK}
     probs = sum(it['problems'] for it in allitems)
-    out = ['', f'共 {len(allitems)} 个专题：✅ 已完成 {cnt["DONE"]}，⬜ 待实现 {cnt["TODO"]}，📝 笔记 {cnt["NOTE"]}；题单中已收录 {probs} 道题。', '']
+    out = ['', f'共 **{len(allitems)}** 个专题：✅ 已完成 {cnt["DONE"]}，⬜ 待实现 {cnt["TODO"]}，📝 笔记 {cnt["NOTE"]}；题单中已收录 **{probs}** 道题。', '',
+           '| 专题 | 已完成 | 待实现 | 笔记 | 题单 | 进度 |', '|---|:---:|:---:|:---:|:---:|---|']
+    for d, name, items in topics:
+        c = {s: sum(1 for it in items if it['status'] == s) for s in STATUS_MARK}
+        p = sum(it['problems'] for it in items)
+        filled = round(10 * (c['DONE'] + c['NOTE']) / len(items))
+        out.append(f'| [{d} {name}](#{d}) | {c["DONE"]} | {c["TODO"]} | {c["NOTE"]} | {p} | {"█" * filled}{"░" * (10 - filled)} |')
+    out.append('')
     for d, name, items in topics:
         done = sum(1 for it in items if it['status'] == 'DONE')
-        out += [f'### {d} {name}（{done}/{len(items)}）', '', '| 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |', '|---|---|---|---|---|---|']
+        out += [f'<a id="{d}"></a>', '', f'### {d} {name}（{done}/{len(items)}）', '', '| 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |', '|---|---|---|---|---|---|']
         for it in items:
             num = os.path.basename(it['path']).split('_')[0]
             out.append(f'| {num} | [{it["title"]}]({it["path"]}) | {stars(it["level"])} | {it["prereq"]} | {STATUS_MARK.get(it["status"], it["status"])} | {it["problems"]} |')

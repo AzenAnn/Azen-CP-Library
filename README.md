@@ -1,287 +1,390 @@
-# cp-library：C++ 算法竞赛模板库
+<div align="center">
 
-仿照灵茶山艾府的 [codeforces-go](https://github.com/EndlessCheng/codeforces-go) 的维护方式建立的个人 C++ 模板库：
-**每个知识点一个文件，文件里同时放"学习路线 + 资料链接 + 自己的笔记 + 题单 + 经过测试的模板代码"**，做一道题补一点，长期积累。
+# Azen-CP-Library
 
-现场赛（ICPC / CCPC）和线上赛（Codeforces / AtCoder / LeetCode）都适用：
-线上赛直接复制模板代码；现场赛用 `tools/make_pdf.py` 生成打印版。
+**一个"边学边攒"的 C++ 算法竞赛模板库**
 
-## 目录结构
+每个知识点一个文件：学习路线 + 资料链接 + 我的笔记 + 题单 + 经过对拍测试的模板代码，全都在一起。
 
+![C++17](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)
+![GNU G++](https://img.shields.io/badge/compiler-GNU%20G%2B%2B-3b915d)
+![tests](https://img.shields.io/badge/tests-ASan%20%2B%20UBSan%20%2B%20GLIBCXX__DEBUG-6b7280)
+![ICPC / CCPC / OI](https://img.shields.io/badge/for-ICPC%20%7C%20CCPC%20%7C%20OI%20%7C%20Codeforces-orange)
+
+[快速开始](#-快速开始) · [学习路线](ROADMAP.md) · [全部专题](#-全部专题) · [比赛时怎么用](#-比赛时怎么用) · [维护流程](#-日常维护)
+
+</div>
+
+---
+
+## ✨ 特点
+
+- **编号就是学习顺序**：`02_ds/07_segment_tree.hpp` 是数据结构专题的第 7 个知识点，按编号从小到大学即可；跨专题的依赖写在每个文件头的"前置"里。
+- **学、练、用一体**：文件头是学习路线和题单，文件下方是能直接粘贴的模板代码，一个文件就是一个知识点的全部。
+- **每个模板都有对拍测试**：`tests/` 里用随机小数据和暴力解法逐一对比，在 AddressSanitizer、UBSan、`_GLIBCXX_DEBUG` 下运行。
+- **题单都核对过**：洛谷、Codeforces 的题按难度排好序，每题附一句话提示，链接、题名、难度都逐题核对过。
+- **线上线下都能用**：线上赛 `#include` 一个总头文件或者直接复制；现场赛用 `tools/make_pdf.py` 生成打印版。
+- 维护方式参考了灵茶山艾府的 [codeforces-go](https://github.com/EndlessCheng/codeforces-go)。
+
+## 📚 内容一览
+
+| 目录 | 内容 |
+|---|---|
+| `01_basic` 基础算法 | 前缀和与差分、二分与三分、双指针、离散化、位运算、贪心、高精度、倍增、分治、构造、搜索、01 分数规划 |
+| `02_ds` 数据结构 | 单调栈 / 队列、堆、并查集、ST 表、树状数组、线段树（懒标记、动态开点、吉司机、线段树分治）、笛卡尔树、分块、莫队、平衡树、可持久化、珂朵莉树、CDQ、左偏树、LCT、李超树、KD-Tree |
+| `03_graph` 图论 | 最短路、最小环与次短路、最小生成树、矩阵树定理、SCC、割点与桥、二分图、KM、差分约束、2-SAT、欧拉路、网络流、费用流、最小割树、K 短路、朱刘算法、上下界网络流、带花树、圆方树、支配树 |
+| `04_tree` 树 | 直径与重心、LCA、树上差分、基环树、重链剖分、长链剖分、dsu on tree、树哈希、Prüfer 序列、点分治、虚树、点分树 |
+| `05_math` 数学 | 取模与快速幂、GCD、筛法、逆元、组合数、康托展开 / 错排 / 约瑟夫、欧拉函数、矩阵、CRT、高斯消元、线性基、整除分块、博弈、莫比乌斯反演、BSGS、Pollard-Rho、FFT/NTT、Lucas、原根、卡特兰 / 斯特林、二项式反演、Burnside/Pólya、杜教筛、FWT、多项式、单纯形、拉格朗日插值 |
+| `06_dp` 动态规划 | 线性、LIS/LCS、背包、区间、树形与换根、状压、数位、单调队列 / 斜率 / 四边形不等式优化、期望、插头 DP、斯坦纳树、动态 DP、DP 套 DP、WQS 二分 |
+| `07_string` 字符串 | 字符串哈希、KMP、Z 函数、Manacher、最小表示法、AC 自动机、后缀数组、SAM、PAM、广义 SAM、序列自动机 |
+| `08_geometry` 计算几何 | 点与向量、凸包、旋转卡壳、扫描线、最近点对、半平面交、圆的基本计算、自适应 Simpson、三维几何、最小圆覆盖 |
+| `09_misc` 杂项 | 随机化与防卡哈希、交互题、模拟退火、折半搜索 |
+
+完成情况和每个专题的链接见下方的 [全部专题](#-全部专题)；按难度分成四个阶段的学习路线见 [ROADMAP.md](ROADMAP.md)。
+
+## 🚀 快速开始
+
+复制 [contest/starter.cpp](contest/starter.cpp)，引入总头文件 [templates/all.hpp](templates/all.hpp)，就能直接用库里全部已完成的模板（总头文件已包含万能头、`using namespace std` 以及 `ll`、`ull`、`pii`）：
+
+```cpp
+#include "../templates/all.hpp"
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    Fenwick f(5);
+    f.add(1, 10);
+    cout << f.sum(1, 5) << '\n';   // 10
+
+    DSU d(5);
+    d.merge(0, 1);
+    cout << d.same(0, 1) << '\n';  // 1
+}
 ```
-cp-library/
-├── README.md            本文件（末尾的目录由脚本自动生成）
-├── ROADMAP.md           按难度分阶段的学习路线（自动生成）
-├── templates/           模板，按专题分目录，编号即学习顺序
-│   ├── 01_basic/        基础算法：前缀和、二分、双指针、排序、位运算……
-│   ├── 02_ds/           数据结构：单调栈、并查集、树状数组、线段树、平衡树……
-│   ├── 03_graph/        图论：BFS/DFS、拓扑、最短路、生成树、连通性、网络流……
-│   ├── 04_tree/         树：直径重心、LCA、树上差分、树剖、点分治……
-│   ├── 05_math/         数学：取模、数论、组合、矩阵、多项式……
-│   ├── 06_dp/           动态规划：线性、背包、区间、树形、状压、数位、优化……
-│   ├── 07_string/       字符串：哈希、KMP、Z 函数、Manacher、AC 自动机、SA、SAM……
-│   ├── 08_geometry/     计算几何
-│   └── 09_misc/         杂项：随机化、交互题、模拟退火
-├── tests/               每个已完成模板的对拍测试（随机小数据 + 暴力对比）
-├── contest/             比赛工具：main.cpp 骨架、debug.hpp、run.sh 跑样例、stress/ 对拍
-├── solutions/           题解库（按平台存放，命名规则见 solutions/README.md）
-└── tools/               test_all.sh、gen_index.py、new_template.py、make_pdf.py
-```
 
-## 编号与难度
+- 路径相对于当前 `.cpp` 文件，上面的写法适用于 `contest/` 下的文件；[contest/example.cpp](contest/example.cpp) 是完整示例。
+- OJ 访问不到本地的 `templates/`，提交前要把用到的模板展开成源码（每个模板都能单独复制粘贴）。
+- 新增模板或把状态改成 `DONE` 后，运行 `python tools/gen_all.py` 更新总头文件，再运行 `bash tools/test_all.sh all_headers` 检查。
 
-- **编号就是学习顺序**：`02_ds/06_fenwick.hpp` 表示"数据结构专题的第 6 个知识点"。同一专题内按编号从小到大学即可；每个文件头的"前置"写了跨专题的依赖。
-- **文件内的【学习顺序】也有编号**，把一个知识点再拆成几个小步骤，比如线段树：1. 单点修改区间查询 → 2. 懒标记 → 3. 多种标记 → 4. 维护复杂信息 → 5. 线段树上二分。
-- **难度星级**（大致对应 Codeforces 分数）：★ 入门 800–1300，★★ 提高 1300–1900，★★★ 进阶 1900–2400，★★★★ 高级 2400+。
-  [ROADMAP.md](ROADMAP.md) 按星级把所有专题分成四个阶段，适合跨专题交替推进。
-- 排序参考了 [OI-wiki](https://oi-wiki.org/) 的目录结构、[cp-algorithms](https://cp-algorithms.com/)、
-  [USACO Guide](https://usaco.guide/) 的 Bronze → Platinum 分级，以及灵神题单的难度顺序，并按"前置知识先学"的原则调整过。
-  这只是建议，可以按自己的情况调整（改文件头的难度和前置，再运行 `tools/gen_index.py`）。
+## 🧩 模板文件长什么样
 
-## 模板文件的结构
-
-每个 `templates/**/*.hpp` 都是同样的格式（参考 `templates/02_ds/07_segment_tree.hpp`）：
+每个 `templates/**/*.hpp` 都是同样的格式（例如 [templates/02_ds/07_segment_tree.hpp](templates/02_ds/07_segment_tree.hpp)）：
 
 ```cpp
 /**
  * 02_ds/07 线段树（含懒标记）      ← 编号与标题
- * 难度：★★ 提高
+ * 难度：★★ 提高（约 CF 1300–1900）
  * 前置：02_ds/06 树状数组
  * 状态：DONE / TODO / NOTE         ← 已实现并测试 / 待自己实现 / 没有固定模板
  *
  * 【学习顺序】     本知识点拆成的小步骤
- * 【学习资料】     OI-wiki、cp-algorithms、灵神模板的对应页面（链接都已核实过）
- * 【模板题】       洛谷模板题、Library Checker，用来验证自己的实现
+ * 【学习资料】     OI-wiki、cp-algorithms、灵神模板的对应页面
+ * 【模板题】       用来验证自己实现的模板题
  * 【我的笔记】     学完后用自己的话写：直观理解、易错点
- * 【题单】         做一道补一道：链接  难度  一句话提示
+ * 【题单】         链接  难度  一句话提示（按难度排序）
  */
 （模板代码）
 ```
 
-## 代码约定
+**代码约定**
 
-- **C++17**。所有模板都假设文件开头是 `contest/main.cpp` 里的这几行：
-  `#include <bits/stdc++.h>`、`using namespace std;`、`using ll = long long;`
-- **每个模板都能直接复制粘贴**，不依赖其他模板（个别地方会在注释里说明可以配合哪个模板使用）。
-- 下标从 0 还是从 1 开始、区间开闭，都写在模板的注释里。多数是"从 0 开始、左闭右开 `[l, r)`"，树状数组按惯例从 1 开始。
+- C++17；所有模板都假设开头是 `#include <bits/stdc++.h>`、`using namespace std;`、`using ll = long long;`。
+- 每个模板都能直接复制粘贴，不依赖其他模板（计算几何的模板需要先粘贴 `08_geometry/01`）。
+- 下标从 0 还是从 1 开始、区间开闭，都写在模板的注释里；多数是"从 0 开始"，树状数组按惯例从 1 开始。
 - 递归深度可能很大的地方（树、图）尽量用 BFS 序或显式栈代替递归。
 
-## 比赛时怎么用
+**难度星级**（大致对应 Codeforces 分数）：★ 入门 800–1300 · ★★ 提高 1300–1900 · ★★★ 进阶 1900–2400 · ★★★★ 高级 2400+。
+排序参考了 [OI-wiki](https://oi-wiki.org/) 的目录、[cp-algorithms](https://cp-algorithms.com/)、[USACO Guide](https://usaco.guide/) 的分级和灵神题单的难度顺序。
+
+## 🏁 比赛时怎么用
 
 ```bash
 cd contest
-cp main.cpp a.cpp            # 每题一个文件，或直接改 main.cpp
+cp starter.cpp a.cpp         # 每题复制一份骨架
 # 把样例存到 samples/1.in、samples/1.out ……
 ./run.sh a.cpp               # 编译（带越界、溢出检查）并比对所有样例
 FAST=1 ./run.sh a.cpp        # 不带检查，跑得更快
 cd stress && ./stress.sh     # 对拍：gen.cpp 生成数据，brute.cpp 暴力，sol.cpp 正解
 ```
 
-代码里可以用 `debug(x, vec, mp)` 打印变量（只在本地 `-DLOCAL` 时生效，提交时自动失效）。
+- 代码里可以用 `debug(x, vec, mp)` 打印变量，只在本地 `-DLOCAL` 时生效，提交时自动失效。
+- 现场赛打印：`python3 tools/make_pdf.py`（加 `--compact` 去掉注释）生成 `build/cp-library.pdf`，只包含状态为 DONE 的模板。
 
-现场赛打印：`python3 tools/make_pdf.py`（或加 `--compact` 去掉注释）生成 `build/cp-library.pdf`，只包含状态为 DONE 的模板代码。
+<details>
+<summary>Windows / VS Code 下的用法</summary>
 
-## 如何更新（日常维护流程）
+我本地的 VS Code 设置（`.vscode/` 不上传）把 Code Runner 的 C++ 运行命令固定到 `C:\1mingw\mingw64\bin\g++.exe`（GCC 13.2），使用 C++20，点击 Run Code 即可。PowerShell 中也可以在仓库根目录运行：
 
-**每做完一道题**
-1. 题解存到 `solutions/` 对应目录，开头写链接、难度、一句话思路。
-2. 问自己：这题有没有新技巧或新结论？有的话，把"链接 + 难度 + 一句话提示"补进对应模板文件的【题单】，按难度插到合适的位置。
-3. 用到了库里还没有的算法 → 见下面"新增模板"。
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_cpp.ps1 contest/starter.cpp
+```
 
-**学完一个 TODO 专题**
-1. 按文件头的【学习顺序】学，在【我的笔记】里写下理解。
-2. 在文件下方写出自己的实现，在 `tests/` 里写对拍测试（复制一个已有测试改改即可）。
-3. `tools/test_all.sh 专题名` 通过后，把状态改成 DONE。
-4. 去做【模板题】，AC 后才算真正可靠。
+脚本把程序编译到源文件所在目录的 `bin/`，编译失败时不会运行旧程序。注意本机 PATH 中的 `g++` 实际位于 LLVM-MinGW 目录，直接把 `clang++` 改为 `g++` 仍不等于使用上述 GCC；本库的 `__lg` 和 PBDS 需要 GNU 标准库扩展。
 
-**新增模板**：`python3 tools/new_template.py 02_ds segment_tree_beats "吉司机线段树" --level 4 --prereq "02_ds/07"`
-会生成带标准文件头的模板文件和测试骨架。
+</details>
 
-**每场比赛后**：赛时卡住的地方，回头看是模板缺了还是模板不好用；修改模板接口后重新跑一遍 `tools/test_all.sh`。
+## ✅ 测试
+
+```bash
+bash tools/test_all.sh            # 编译并运行 tests/ 下的全部测试（Linux 下开启 ASan / UBSan / _GLIBCXX_DEBUG）
+bash tools/test_all.sh 02_ds      # 只测某个专题，也可以写文件名的一部分，如 segment_tree
+```
+
+每个 `DONE` 模板在 `tests/` 里都有一个对拍测试：随机生成小数据，用模板和暴力解法分别计算，结果必须完全一致。
+
+## 🔧 日常维护
+
+**每做完一道题**：题解存到 `solutions/` 对应目录；有新技巧就把"链接 + 难度 + 一句话提示"补进对应模板的【题单】。
+
+**学完一个 TODO 专题**：按【学习顺序】学、在【我的笔记】里写理解 → 在文件下方写出实现、在 `tests/` 里写对拍 → `tools/test_all.sh 专题名` 通过后把状态改成 DONE → 去 AC 【模板题】。
+
+**新增模板**：`python3 tools/new_template.py 07_string lyndon "Lyndon 分解" --level 4 --prereq "07_string/05"`，会生成带标准文件头的模板和测试骨架。
 
 **改完后**：
+
 ```bash
-tools/test_all.sh                 # 所有测试都要通过
+bash tools/test_all.sh            # 所有测试都要通过
 python3 tools/gen_index.py        # 更新下面的目录和 ROADMAP.md
+python3 tools/gen_all.py          # 更新总头文件 templates/all.hpp
 git add -A && git commit -m "segment_tree: 新增区间赋值标记；题单 +3"
 ```
 
-**定期整理（比如每月一次）**：给题单重新排序、删掉价值不高的题；文件太长就拆分；重新生成打印版 PDF。
+## 🗂️ 目录结构
 
-## 目录
+```
+Azen-CP-Library/
+├── templates/     模板，按专题分目录，编号即学习顺序；all.hpp 为总头文件
+├── tests/         每个已完成模板的对拍测试
+├── contest/       比赛工具：starter.cpp 骨架、debug.hpp、run.sh 跑样例、stress/ 对拍
+├── solutions/     题解（按平台存放，命名规则见 solutions/README.md）
+├── tools/         test_all.sh、gen_index.py、gen_all.py、new_template.py、make_pdf.py
+├── ROADMAP.md     按难度分阶段的学习路线（自动生成）
+└── README.md      本文件（下方目录自动生成）
+```
+
+## 📑 全部专题
 
 以下内容由 `python3 tools/gen_index.py` 自动生成。
 
 <!-- INDEX:START -->
 
-共 122 个专题：✅ 已完成 87，⬜ 待实现 28，📝 笔记 7；题单中已收录 1536 道题。
+共 **140** 个专题：✅ 已完成 105，⬜ 待实现 28，📝 笔记 7；题单中已收录 **1663** 道题。
 
-### 01_basic 基础算法（7/12）
+| 专题 | 已完成 | 待实现 | 笔记 | 题单 | 进度 |
+|---|:---:|:---:|:---:|:---:|---|
+| [01_basic 基础算法](#01_basic) | 8 | 0 | 5 | 187 | ██████████ |
+| [02_ds 数据结构](#02_ds) | 20 | 4 | 0 | 308 | ████████░░ |
+| [03_graph 图论](#03_graph) | 17 | 5 | 0 | 239 | ████████░░ |
+| [04_tree 树](#04_tree) | 11 | 2 | 0 | 156 | ████████░░ |
+| [05_math 数学](#05_math) | 19 | 8 | 0 | 301 | ███████░░░ |
+| [06_dp 动态规划](#06_dp) | 11 | 4 | 1 | 192 | ████████░░ |
+| [07_string 字符串](#07_string) | 9 | 2 | 0 | 131 | ████████░░ |
+| [08_geometry 计算几何](#08_geometry) | 8 | 2 | 0 | 97 | ████████░░ |
+| [09_misc 杂项](#09_misc) | 2 | 1 | 1 | 52 | ████████░░ |
 
-| 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
-|---|---|---|---|---|---|
-| 01 | [快读快写与比赛骨架](templates\01_basic\01_io.hpp) | ★ | 无 | ✅ 已完成 | 11 |
-| 02 | [前缀和与差分](templates\01_basic\02_prefix_sum.hpp) | ★ | 无 | ✅ 已完成 | 15 |
-| 03 | [二分查找、二分答案与三分](templates\01_basic\03_binary_search.hpp) | ★ | 无 | ✅ 已完成 | 15 |
-| 04 | [双指针与滑动窗口](templates\01_basic\04_two_pointers.hpp) | ★ | 01_basic/02 前缀和与差分 | ✅ 已完成 | 15 |
-| 05 | [排序与离散化](templates\01_basic\05_sort_discrete.hpp) | ★ | 无 | ✅ 已完成 | 15 |
-| 06 | [位运算](templates\01_basic\06_bits.hpp) | ★ | 无 | ✅ 已完成 | 15 |
-| 07 | [贪心常见模型](templates\01_basic\07_greedy.hpp) | ★ | 无 | 📝 笔记 | 15 |
-| 08 | [高精度](templates\01_basic\08_bignum.hpp) | ★ | 无 | ✅ 已完成 | 15 |
-| 09 | [倍增](templates\01_basic\09_binary_lifting.hpp) | ★★ | 01_basic/03 二分查找、二分答案与三分 | 📝 笔记 | 15 |
-| 10 | [分治](templates\01_basic\10_divide_conquer.hpp) | ★★ | 01_basic/05 排序与离散化 | 📝 笔记 | 15 |
-| 11 | [构造](templates\01_basic\11_construction.hpp) | ★★ | 无 | 📝 笔记 | 15 |
-| 12 | [搜索：DFS、BFS、剪枝](templates\01_basic\12_search.hpp) | ★★ | 01_basic/10 分治 | 📝 笔记 | 14 |
+<a id="01_basic"></a>
 
-### 02_ds 数据结构（17/21）
+### 01_basic 基础算法（8/13）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
-| 01 | [栈与单调栈](templates\02_ds\01_stack_monotone.hpp) | ★ | 无 | ✅ 已完成 | 15 |
-| 02 | [单调队列](templates\02_ds\02_monotone_queue.hpp) | ★ | 02_ds/01 栈与单调栈 | ✅ 已完成 | 15 |
-| 03 | [堆与优先队列](templates\02_ds\03_heap.hpp) | ★ | 无 | ✅ 已完成 | 15 |
-| 04 | [并查集](templates\02_ds\04_dsu.hpp) | ★ | 无 | ✅ 已完成 | 15 |
-| 05 | [ST 表](templates\02_ds\05_sparse_table.hpp) | ★★ | 01_basic/09 倍增 | ✅ 已完成 | 15 |
-| 06 | [树状数组](templates\02_ds\06_fenwick.hpp) | ★★ | 01_basic/02 前缀和与差分、01_basic/06 位运算 | ✅ 已完成 | 15 |
-| 07 | [线段树（含懒标记）](templates\02_ds\07_segment_tree.hpp) | ★★ | 02_ds/06 树状数组 | ✅ 已完成 | 15 |
-| 08 | [字典树 Trie 与 01-Trie](templates\02_ds\08_trie.hpp) | ★★ | 无 | ✅ 已完成 | 15 |
-| 09 | [分块与根号分治](templates\02_ds\09_sqrt_decomposition.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ✅ 已完成 | 15 |
-| 10 | [莫队](templates\02_ds\10_mo.hpp) | ★★★ | 02_ds/09 分块与根号分治 | ✅ 已完成 | 15 |
-| 11 | [线段树进阶](templates\02_ds\11_segment_tree_adv.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ✅ 已完成 | 15 |
-| 12 | [平衡树](templates\02_ds\12_balanced_tree.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ✅ 已完成 | 15 |
-| 13 | [可持久化数据结构](templates\02_ds\13_persistent.hpp) | ★★★ | 02_ds/11 线段树进阶、02_ds/08 字典树 Trie 与 01-Trie | ✅ 已完成 | 15 |
-| 14 | [珂朵莉树（ODT）](templates\02_ds\14_odt.hpp) | ★★★ | 02_ds/12 平衡树 | ✅ 已完成 | 15 |
-| 15 | [CDQ 分治与整体二分](templates\02_ds\15_cdq_offline.hpp) | ★★★★ | 01_basic/10 分治、02_ds/06 树状数组 | ✅ 已完成 | 15 |
-| 16 | [可并堆（左偏树）](templates\02_ds\16_leftist_tree.hpp) | ★★★★ | 02_ds/03 堆与优先队列 | ✅ 已完成 | 12 |
-| 17 | [Link-Cut Tree](templates\02_ds\17_lct.hpp) | ★★★★ | 02_ds/12 平衡树、04_tree/04 树链剖分 | ✅ 已完成 | 15 |
-| 18 | [李超线段树](templates\02_ds\18_li_chao_tree.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ⬜ 待实现 | 8 |
-| 19 | [线段树合并与分裂](templates\02_ds\19_seg_merge_split.hpp) | ★★★★ | 02_ds/11 线段树进阶、02_ds/13 可持久化数据结构 | ⬜ 待实现 | 8 |
-| 20 | [树套树](templates\02_ds\20_tree_in_tree.hpp) | ★★★★ | 02_ds/11 线段树进阶、02_ds/12 平衡树 | ⬜ 待实现 | 8 |
-| 21 | [K-D Tree](templates\02_ds\21_kdtree.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ⬜ 待实现 | 8 |
+| 01 | [快读快写与比赛骨架](templates/01_basic/01_io.hpp) | ★ | 无 | ✅ 已完成 | 11 |
+| 02 | [前缀和与差分](templates/01_basic/02_prefix_sum.hpp) | ★ | 无 | ✅ 已完成 | 15 |
+| 03 | [二分查找、二分答案与三分](templates/01_basic/03_binary_search.hpp) | ★ | 无 | ✅ 已完成 | 15 |
+| 04 | [双指针与滑动窗口](templates/01_basic/04_two_pointers.hpp) | ★ | 01_basic/02 前缀和与差分 | ✅ 已完成 | 15 |
+| 05 | [排序与离散化](templates/01_basic/05_sort_discrete.hpp) | ★ | 无 | ✅ 已完成 | 15 |
+| 06 | [位运算](templates/01_basic/06_bits.hpp) | ★ | 无 | ✅ 已完成 | 15 |
+| 07 | [贪心常见模型](templates/01_basic/07_greedy.hpp) | ★ | 无 | 📝 笔记 | 15 |
+| 08 | [高精度](templates/01_basic/08_bignum.hpp) | ★ | 无 | ✅ 已完成 | 15 |
+| 09 | [倍增](templates/01_basic/09_binary_lifting.hpp) | ★★ | 01_basic/03 二分查找、二分答案与三分 | 📝 笔记 | 15 |
+| 10 | [分治](templates/01_basic/10_divide_conquer.hpp) | ★★ | 01_basic/05 排序与离散化 | 📝 笔记 | 15 |
+| 11 | [构造](templates/01_basic/11_construction.hpp) | ★★ | 无 | 📝 笔记 | 15 |
+| 12 | [搜索：DFS、BFS、剪枝](templates/01_basic/12_search.hpp) | ★★ | 01_basic/10 分治 | 📝 笔记 | 14 |
+| 13 | [01 分数规划](templates/01_basic/13_frac_programming.hpp) | ★★★ | 01_basic/03 二分查找、二分答案与三分、01_basic/07 贪心常见模型 | ✅ 已完成 | 12 |
 
-### 03_graph 图论（12/17）
+<a id="02_ds"></a>
+
+### 02_ds 数据结构（20/24）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
-| 01 | [存图与图的遍历](templates\03_graph\01_graph_basic.hpp) | ★ | 无 | ✅ 已完成 | 15 |
-| 02 | [拓扑排序](templates\03_graph\02_topo.hpp) | ★ | 03_graph/01 存图与图的遍历 | ✅ 已完成 | 15 |
-| 03 | [最短路](templates\03_graph\03_shortest_path.hpp) | ★★ | 03_graph/01 存图与图的遍历、02_ds/03 堆与优先队列 | ✅ 已完成 | 15 |
-| 04 | [最小生成树](templates\03_graph\04_mst.hpp) | ★★ | 02_ds/04 并查集 | ✅ 已完成 | 15 |
-| 05 | [强连通分量与缩点](templates\03_graph\05_scc.hpp) | ★★ | 03_graph/02 拓扑排序 | ✅ 已完成 | 15 |
-| 06 | [割点、桥与双连通分量](templates\03_graph\06_bcc.hpp) | ★★★ | 03_graph/05 强连通分量与缩点 | ✅ 已完成 | 15 |
-| 07 | [二分图](templates\03_graph\07_bipartite.hpp) | ★★★ | 03_graph/01 存图与图的遍历 | ✅ 已完成 | 15 |
-| 08 | [差分约束](templates\03_graph\08_diff_constraints.hpp) | ★★★ | 03_graph/03 最短路 | ✅ 已完成 | 15 |
-| 09 | [2-SAT](templates\03_graph\09_two_sat.hpp) | ★★★ | 03_graph/05 强连通分量与缩点 | ✅ 已完成 | 15 |
-| 10 | [欧拉路径与欧拉回路](templates\03_graph\10_euler.hpp) | ★★★ | 03_graph/01 存图与图的遍历 | ✅ 已完成 | 15 |
-| 11 | [网络流：最大流与最小割](templates\03_graph\11_max_flow.hpp) | ★★★ | 03_graph/03 最短路 | ✅ 已完成 | 15 |
-| 12 | [最小费用最大流](templates\03_graph\12_min_cost_flow.hpp) | ★★★★ | 03_graph/11 网络流：最大流与最小割 | ✅ 已完成 | 15 |
-| 13 | [K 短路](templates\03_graph\13_kth_path.hpp) | ★★★ | 03_graph/03 最短路（Dijkstra/SPFA） | ⬜ 待实现 | 6 |
-| 14 | [最小树形图（朱刘算法 / Edmonds）](templates\03_graph\14_dmst.hpp) | ★★★★ | 03_graph/04 最小生成树 | ⬜ 待实现 | 6 |
-| 15 | [上下界网络流](templates\03_graph\15_flow_bound.hpp) | ★★★★ | 03_graph/11 最大流（Dinic） | ⬜ 待实现 | 6 |
-| 16 | [一般图匹配（带花树 Blossom）](templates\03_graph\16_general_match.hpp) | ★★★★ | 03_graph/07 二分图匹配（匈牙利 / Hopcroft-Karp） | ⬜ 待实现 | 6 |
-| 17 | [圆方树](templates\03_graph\17_block_forest.hpp) | ★★★★ | 03_graph/06 Tarjan（割点 / 点双连通分量） | ⬜ 待实现 | 7 |
+| 01 | [栈与单调栈](templates/02_ds/01_stack_monotone.hpp) | ★ | 无 | ✅ 已完成 | 15 |
+| 02 | [单调队列](templates/02_ds/02_monotone_queue.hpp) | ★ | 02_ds/01 栈与单调栈 | ✅ 已完成 | 15 |
+| 03 | [堆与优先队列](templates/02_ds/03_heap.hpp) | ★ | 无 | ✅ 已完成 | 15 |
+| 04 | [并查集](templates/02_ds/04_dsu.hpp) | ★ | 无 | ✅ 已完成 | 15 |
+| 05 | [ST 表](templates/02_ds/05_sparse_table.hpp) | ★★ | 01_basic/09 倍增 | ✅ 已完成 | 15 |
+| 06 | [树状数组](templates/02_ds/06_fenwick.hpp) | ★★ | 01_basic/02 前缀和与差分、01_basic/06 位运算 | ✅ 已完成 | 15 |
+| 07 | [线段树（含懒标记）](templates/02_ds/07_segment_tree.hpp) | ★★ | 02_ds/06 树状数组 | ✅ 已完成 | 15 |
+| 08 | [字典树 Trie 与 01-Trie](templates/02_ds/08_trie.hpp) | ★★ | 无 | ✅ 已完成 | 15 |
+| 09 | [笛卡尔树](templates/02_ds/09_cartesian_tree.hpp) | ★★★ | 02_ds/01 栈与单调栈、02_ds/05 ST 表 | ✅ 已完成 | 9 |
+| 10 | [分块与根号分治](templates/02_ds/10_sqrt_decomposition.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ✅ 已完成 | 15 |
+| 11 | [莫队](templates/02_ds/11_mo.hpp) | ★★★ | 02_ds/10 分块与根号分治 | ✅ 已完成 | 15 |
+| 12 | [线段树进阶](templates/02_ds/12_segment_tree_adv.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ✅ 已完成 | 15 |
+| 13 | [吉司机线段树（区间最值操作）](templates/02_ds/13_segment_tree_beats.hpp) | ★★★★ | 02_ds/07 线段树（含懒标记）、02_ds/12 线段树进阶 | ✅ 已完成 | 8 |
+| 14 | [平衡树](templates/02_ds/14_balanced_tree.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ✅ 已完成 | 15 |
+| 15 | [可持久化数据结构](templates/02_ds/15_persistent.hpp) | ★★★ | 02_ds/12 线段树进阶、02_ds/08 字典树 Trie 与 01-Trie | ✅ 已完成 | 15 |
+| 16 | [珂朵莉树（ODT）](templates/02_ds/16_odt.hpp) | ★★★ | 02_ds/14 平衡树 | ✅ 已完成 | 15 |
+| 17 | [CDQ 分治与整体二分](templates/02_ds/17_cdq_offline.hpp) | ★★★★ | 01_basic/10 分治、02_ds/06 树状数组 | ✅ 已完成 | 15 |
+| 18 | [线段树分治（离线删边）](templates/02_ds/18_segment_tree_divide.hpp) | ★★★ | 02_ds/04 并查集、02_ds/07 线段树（含懒标记） | ✅ 已完成 | 7 |
+| 19 | [可并堆（左偏树）](templates/02_ds/19_leftist_tree.hpp) | ★★★★ | 02_ds/03 堆与优先队列 | ✅ 已完成 | 12 |
+| 20 | [Link-Cut Tree](templates/02_ds/20_lct.hpp) | ★★★★ | 02_ds/14 平衡树、04_tree/05 树链剖分 | ✅ 已完成 | 15 |
+| 21 | [李超线段树](templates/02_ds/21_li_chao_tree.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ⬜ 待实现 | 8 |
+| 22 | [线段树合并与分裂](templates/02_ds/22_seg_merge_split.hpp) | ★★★★ | 02_ds/12 线段树进阶、02_ds/15 可持久化数据结构 | ⬜ 待实现 | 8 |
+| 23 | [树套树](templates/02_ds/23_tree_in_tree.hpp) | ★★★★ | 02_ds/12 线段树进阶、02_ds/14 平衡树 | ⬜ 待实现 | 8 |
+| 24 | [K-D Tree](templates/02_ds/24_kdtree.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ⬜ 待实现 | 8 |
 
-### 04_tree 树（8/10）
+<a id="03_graph"></a>
 
-| 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
-|---|---|---|---|---|---|
-| 01 | [树的基础：直径、重心、DFS 序](templates\04_tree\01_tree_basic.hpp) | ★ | 03_graph/01 存图与图的遍历 | ✅ 已完成 | 15 |
-| 02 | [最近公共祖先（LCA）](templates\04_tree\02_lca.hpp) | ★★ | 04_tree/01 树的基础：直径、重心、DFS 序、01_basic/09 倍增 | ✅ 已完成 | 15 |
-| 03 | [树上差分与树上前缀和](templates\04_tree\03_tree_diff.hpp) | ★★ | 04_tree/02 最近公共祖先（LCA）、01_basic/02 前缀和与差分 | ✅ 已完成 | 13 |
-| 04 | [树链剖分](templates\04_tree\04_hld.hpp) | ★★★ | 04_tree/02 最近公共祖先（LCA）、02_ds/07 线段树（含懒标记） | ✅ 已完成 | 15 |
-| 05 | [树上启发式合并](templates\04_tree\05_dsu_on_tree.hpp) | ★★★ | 04_tree/04 树链剖分 | ✅ 已完成 | 15 |
-| 06 | [树哈希与树同构](templates\04_tree\06_tree_hash.hpp) | ★★★ | 04_tree/01 树的基础：直径、重心、DFS 序 | ✅ 已完成 | 15 |
-| 07 | [点分治](templates\04_tree\07_centroid_decomp.hpp) | ★★★★ | 04_tree/01 树的基础：直径、重心、DFS 序、01_basic/10 分治 | ✅ 已完成 | 15 |
-| 08 | [虚树](templates\04_tree\08_virtual_tree.hpp) | ★★★★ | 04_tree/02 最近公共祖先（LCA） | ✅ 已完成 | 15 |
-| 09 | [动态点分治（点分树）](templates\04_tree\09_dynamic_tree_divide.hpp) | ★★★★ | 04_tree/07 静态点分治 | ⬜ 待实现 | 6 |
-| 10 | [树上随机游走](templates\04_tree\10_tree_random_walk.hpp) | ★★★★ | 04_tree/01 树的遍历与直径、05_math/01 概率期望 | ⬜ 待实现 | 6 |
-
-### 05_math 数学（16/24）
+### 03_graph 图论（17/22）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
-| 01 | [取模运算与快速幂](templates\05_math\01_modint.hpp) | ★ | 无 | ✅ 已完成 | 11 |
-| 02 | [GCD 与扩展欧几里得](templates\05_math\02_gcd.hpp) | ★ | 无 | ✅ 已完成 | 15 |
-| 03 | [素数、筛法与分解质因数](templates\05_math\03_prime_sieve.hpp) | ★ | 无 | ✅ 已完成 | 15 |
-| 04 | [乘法逆元](templates\05_math\04_inverse.hpp) | ★★ | 05_math/01 取模运算与快速幂、05_math/02 GCD 与扩展欧几里得 | ✅ 已完成 | 15 |
-| 05 | [组合数与计数原理](templates\05_math\05_combinatorics.hpp) | ★★ | 05_math/04 乘法逆元 | ✅ 已完成 | 15 |
-| 06 | [欧拉函数与欧拉定理](templates\05_math\06_euler_phi.hpp) | ★★ | 05_math/03 素数、筛法与分解质因数 | ✅ 已完成 | 15 |
-| 07 | [矩阵与矩阵快速幂](templates\05_math\07_matrix.hpp) | ★★ | 05_math/01 取模运算与快速幂 | ✅ 已完成 | 15 |
-| 08 | [中国剩余定理](templates\05_math\08_crt.hpp) | ★★★ | 05_math/02 GCD 与扩展欧几里得 | ✅ 已完成 | 15 |
-| 09 | [高斯消元](templates\05_math\09_gauss.hpp) | ★★★ | 05_math/07 矩阵与矩阵快速幂 | ✅ 已完成 | 15 |
-| 10 | [线性基](templates\05_math\10_linear_basis.hpp) | ★★★ | 01_basic/06 位运算 | ✅ 已完成 | 15 |
-| 11 | [数论分块（整除分块）](templates\05_math\11_number_block.hpp) | ★★★ | 无 | ✅ 已完成 | 15 |
-| 12 | [博弈论](templates\05_math\12_game.hpp) | ★★★ | 01_basic/06 位运算 | ✅ 已完成 | 15 |
-| 13 | [莫比乌斯反演](templates\05_math\13_mobius.hpp) | ★★★★ | 05_math/11 数论分块（整除分块）、05_math/06 欧拉函数与欧拉定理 | ✅ 已完成 | 15 |
-| 14 | [离散对数 BSGS](templates\05_math\14_bsgs.hpp) | ★★★★ | 05_math/04 乘法逆元 | ✅ 已完成 | 13 |
-| 15 | [Miller-Rabin 与 Pollard-Rho](templates\05_math\15_pollard_rho.hpp) | ★★★★ | 05_math/03 素数、筛法与分解质因数 | ✅ 已完成 | 8 |
-| 16 | [FFT / NTT 多项式乘法](templates\05_math\16_fft_ntt.hpp) | ★★★★ | 05_math/01 取模运算与快速幂 | ✅ 已完成 | 15 |
-| 17 | [Lucas 定理与扩展 Lucas](templates\05_math\17_lucas.hpp) | ★★★ | 05_math/05 组合数学基础（逆元、组合数） | ⬜ 待实现 | 6 |
-| 18 | [阶与原根](templates\05_math\18_primitive_root.hpp) | ★★★ | 05_math/04 欧拉函数、05_math/06 快速幂 / 费马小定理 | ⬜ 待实现 | 6 |
-| 19 | [卡特兰数与斯特林数](templates\05_math\19_catalan.hpp) | ★★★ | 05_math/05 组合数学基础 | ⬜ 待实现 | 8 |
-| 20 | [杜教筛](templates\05_math\20_du_sieve.hpp) | ★★★★ | 05_math/13 线性筛 / 莫比乌斯反演 | ⬜ 待实现 | 6 |
-| 21 | [FWT（快速沃尔什变换）](templates\05_math\21_fwt.hpp) | ★★★★ | 05_math/16 FFT / NTT | ⬜ 待实现 | 6 |
-| 22 | [多项式进阶（牛顿迭代、逆元/开方/ln/exp）](templates\05_math\22_poly_ops.hpp) | ★★★★ | 05_math/16 FFT / NTT | ⬜ 待实现 | 7 |
-| 23 | [单纯形法（线性规划）](templates\05_math\23_simplex.hpp) | ★★★★ | 05_math/09 高斯消元 | ⬜ 待实现 | 6 |
-| 24 | [拉格朗日插值](templates\05_math\24_lagrange_interp.hpp) | ★★★ | 05_math/04 同余基础、05_math/05 逆元 | ⬜ 待实现 | 6 |
+| 01 | [存图与图的遍历](templates/03_graph/01_graph_basic.hpp) | ★ | 无 | ✅ 已完成 | 15 |
+| 02 | [拓扑排序](templates/03_graph/02_topo.hpp) | ★ | 03_graph/01 存图与图的遍历 | ✅ 已完成 | 15 |
+| 03 | [最短路](templates/03_graph/03_shortest_path.hpp) | ★★ | 03_graph/01 存图与图的遍历、02_ds/03 堆与优先队列 | ✅ 已完成 | 15 |
+| 04 | [最小环与次短路](templates/03_graph/04_min_cycle.hpp) | ★★ | 03_graph/03 最短路 | ✅ 已完成 | 6 |
+| 05 | [最小生成树](templates/03_graph/05_mst.hpp) | ★★ | 02_ds/04 并查集 | ✅ 已完成 | 15 |
+| 06 | [矩阵树定理（生成树计数）](templates/03_graph/06_matrix_tree.hpp) | ★★★★ | 03_graph/05 最小生成树、05_math/10 高斯消元 | ✅ 已完成 | 8 |
+| 07 | [强连通分量与缩点](templates/03_graph/07_scc.hpp) | ★★ | 03_graph/02 拓扑排序 | ✅ 已完成 | 15 |
+| 08 | [割点、桥与双连通分量](templates/03_graph/08_bcc.hpp) | ★★★ | 03_graph/07 强连通分量与缩点 | ✅ 已完成 | 15 |
+| 09 | [二分图](templates/03_graph/09_bipartite.hpp) | ★★★ | 03_graph/01 存图与图的遍历 | ✅ 已完成 | 15 |
+| 10 | [二分图最大权匹配（KM / 匈牙利算法）](templates/03_graph/10_km.hpp) | ★★★★ | 03_graph/09 二分图 | ✅ 已完成 | 6 |
+| 11 | [差分约束](templates/03_graph/11_diff_constraints.hpp) | ★★★ | 03_graph/03 最短路 | ✅ 已完成 | 15 |
+| 12 | [2-SAT](templates/03_graph/12_two_sat.hpp) | ★★★ | 03_graph/07 强连通分量与缩点 | ✅ 已完成 | 15 |
+| 13 | [欧拉路径与欧拉回路](templates/03_graph/13_euler.hpp) | ★★★ | 03_graph/01 存图与图的遍历 | ✅ 已完成 | 15 |
+| 14 | [网络流：最大流与最小割](templates/03_graph/14_max_flow.hpp) | ★★★ | 03_graph/03 最短路 | ✅ 已完成 | 15 |
+| 15 | [最小费用最大流](templates/03_graph/15_min_cost_flow.hpp) | ★★★★ | 03_graph/14 网络流：最大流与最小割 | ✅ 已完成 | 15 |
+| 16 | [最小割树（Gomory-Hu Tree）](templates/03_graph/16_gomory_hu.hpp) | ★★★★ | 03_graph/14 网络流：最大流与最小割 | ✅ 已完成 | 5 |
+| 17 | [K 短路](templates/03_graph/17_kth_path.hpp) | ★★★ | 03_graph/03 最短路 | ⬜ 待实现 | 6 |
+| 18 | [最小树形图（朱刘算法 / Edmonds）](templates/03_graph/18_dmst.hpp) | ★★★★ | 03_graph/05 最小生成树 | ⬜ 待实现 | 6 |
+| 19 | [上下界网络流](templates/03_graph/19_flow_bound.hpp) | ★★★★ | 03_graph/14 网络流：最大流与最小割 | ⬜ 待实现 | 6 |
+| 20 | [一般图匹配（带花树 Blossom）](templates/03_graph/20_general_match.hpp) | ★★★★ | 03_graph/09 二分图 | ⬜ 待实现 | 6 |
+| 21 | [圆方树](templates/03_graph/21_block_forest.hpp) | ★★★★ | 03_graph/08 割点、桥与双连通分量 | ⬜ 待实现 | 7 |
+| 22 | [支配树](templates/03_graph/22_dominator_tree.hpp) | ★★★★ | 03_graph/02 拓扑排序、04_tree/02 最近公共祖先（LCA） | ✅ 已完成 | 3 |
 
-### 06_dp 动态规划（10/15）
+<a id="04_tree"></a>
+
+### 04_tree 树（11/13）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
-| 01 | [线性 DP 入门与记忆化搜索](templates\06_dp\01_dp_basic.hpp) | ★ | 无 | 📝 笔记 | 15 |
-| 02 | [LIS、LCS 与编辑距离](templates\06_dp\02_lis_lcs.hpp) | ★ | 06_dp/01 线性 DP 入门与记忆化搜索、01_basic/03 二分查找、二分答案与三分 | ✅ 已完成 | 13 |
-| 03 | [背包 DP](templates\06_dp\03_knapsack.hpp) | ★★ | 06_dp/01 线性 DP 入门与记忆化搜索 | ✅ 已完成 | 15 |
-| 04 | [区间 DP](templates\06_dp\04_interval_dp.hpp) | ★★ | 06_dp/01 线性 DP 入门与记忆化搜索 | ✅ 已完成 | 15 |
-| 05 | [树形 DP 与换根 DP](templates\06_dp\05_tree_dp.hpp) | ★★ | 04_tree/01 树的基础：直径、重心、DFS 序 | ✅ 已完成 | 15 |
-| 06 | [状压 DP](templates\06_dp\06_bitmask_dp.hpp) | ★★★ | 01_basic/06 位运算 | ✅ 已完成 | 15 |
-| 07 | [数位 DP](templates\06_dp\07_digit_dp.hpp) | ★★★ | 06_dp/01 线性 DP 入门与记忆化搜索 | ✅ 已完成 | 15 |
-| 08 | [单调队列 / 单调栈优化 DP](templates\06_dp\08_dp_opt_monoqueue.hpp) | ★★★ | 02_ds/02 单调队列 | ✅ 已完成 | 15 |
-| 09 | [概率与期望 DP](templates\06_dp\09_dp_expectation.hpp) | ★★★ | 06_dp/01 线性 DP 入门与记忆化搜索 | ✅ 已完成 | 15 |
-| 10 | [斜率优化与凸包技巧](templates\06_dp\10_dp_opt_slope.hpp) | ★★★★ | 06_dp/08 单调队列 / 单调栈优化 DP | ✅ 已完成 | 15 |
-| 11 | [四边形不等式与决策单调性](templates\06_dp\11_dp_opt_quadrangle.hpp) | ★★★★ | 06_dp/04 区间 DP | ✅ 已完成 | 15 |
-| 12 | [插头 DP（轮廓线 DP）](templates\06_dp\12_plug_dp.hpp) | ★★★★ | 06_dp/06 状态压缩 DP | ⬜ 待实现 | 6 |
-| 13 | [动态 DP](templates\06_dp\13_dynamic_dp.hpp) | ★★★★ | 06_dp/05 树形 DP、05_math/07 矩阵乘法 / 矩阵快速幂 | ⬜ 待实现 | 6 |
-| 14 | [DP 套 DP](templates\06_dp\14_dp_of_dp.hpp) | ★★★★ | 06_dp/06 状态压缩 DP、06_dp/02 线性 DP | ⬜ 待实现 | 6 |
-| 15 | [WQS 二分与 Slope Trick](templates\06_dp\15_wqs_slope_trick.hpp) | ★★★★ | 06_dp/10 斜率优化 DP | ⬜ 待实现 | 7 |
+| 01 | [树的基础：直径、重心、DFS 序](templates/04_tree/01_tree_basic.hpp) | ★ | 03_graph/01 存图与图的遍历 | ✅ 已完成 | 15 |
+| 02 | [最近公共祖先（LCA）](templates/04_tree/02_lca.hpp) | ★★ | 04_tree/01 树的基础：直径、重心、DFS 序、01_basic/09 倍增 | ✅ 已完成 | 15 |
+| 03 | [树上差分与树上前缀和](templates/04_tree/03_tree_diff.hpp) | ★★ | 04_tree/02 最近公共祖先（LCA）、01_basic/02 前缀和与差分 | ✅ 已完成 | 13 |
+| 04 | [基环树](templates/04_tree/04_pseudo_tree.hpp) | ★★★ | 04_tree/01 树的基础：直径、重心、DFS 序、06_dp/05 树形 DP 与换根 DP、02_ds/02 单调队列 | ✅ 已完成 | 11 |
+| 05 | [树链剖分](templates/04_tree/05_hld.hpp) | ★★★ | 04_tree/02 最近公共祖先（LCA）、02_ds/07 线段树（含懒标记） | ✅ 已完成 | 15 |
+| 06 | [长链剖分](templates/04_tree/06_long_chain.hpp) | ★★★★ | 04_tree/05 树链剖分、01_basic/09 倍增 | ✅ 已完成 | 6 |
+| 07 | [树上启发式合并](templates/04_tree/07_dsu_on_tree.hpp) | ★★★ | 04_tree/05 树链剖分 | ✅ 已完成 | 15 |
+| 08 | [树哈希与树同构](templates/04_tree/08_tree_hash.hpp) | ★★★ | 04_tree/01 树的基础：直径、重心、DFS 序 | ✅ 已完成 | 15 |
+| 09 | [Prüfer 序列](templates/04_tree/09_prufer.hpp) | ★★★ | 04_tree/01 树的基础：直径、重心、DFS 序、05_math/05 组合数与计数原理 | ✅ 已完成 | 9 |
+| 10 | [点分治](templates/04_tree/10_centroid_decomp.hpp) | ★★★★ | 04_tree/01 树的基础：直径、重心、DFS 序、01_basic/10 分治 | ✅ 已完成 | 15 |
+| 11 | [虚树](templates/04_tree/11_virtual_tree.hpp) | ★★★★ | 04_tree/02 最近公共祖先（LCA） | ✅ 已完成 | 15 |
+| 12 | [动态点分治（点分树）](templates/04_tree/12_dynamic_tree_divide.hpp) | ★★★★ | 04_tree/10 点分治 | ⬜ 待实现 | 6 |
+| 13 | [树上随机游走](templates/04_tree/13_tree_random_walk.hpp) | ★★★★ | 04_tree/01 树的基础：直径、重心、DFS 序、06_dp/09 概率与期望 DP | ⬜ 待实现 | 6 |
+
+<a id="05_math"></a>
+
+### 05_math 数学（19/27）
+
+| 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
+|---|---|---|---|---|---|
+| 01 | [取模运算与快速幂](templates/05_math/01_modint.hpp) | ★ | 无 | ✅ 已完成 | 11 |
+| 02 | [GCD 与扩展欧几里得](templates/05_math/02_gcd.hpp) | ★ | 无 | ✅ 已完成 | 15 |
+| 03 | [素数、筛法与分解质因数](templates/05_math/03_prime_sieve.hpp) | ★ | 无 | ✅ 已完成 | 15 |
+| 04 | [乘法逆元](templates/05_math/04_inverse.hpp) | ★★ | 05_math/01 取模运算与快速幂、05_math/02 GCD 与扩展欧几里得 | ✅ 已完成 | 15 |
+| 05 | [组合数与计数原理](templates/05_math/05_combinatorics.hpp) | ★★ | 05_math/04 乘法逆元 | ✅ 已完成 | 15 |
+| 06 | [康托展开、错排与约瑟夫问题](templates/05_math/06_perm_counting.hpp) | ★★ | 05_math/05 组合数与计数原理、02_ds/06 树状数组 | ✅ 已完成 | 10 |
+| 07 | [欧拉函数与欧拉定理](templates/05_math/07_euler_phi.hpp) | ★★ | 05_math/03 素数、筛法与分解质因数 | ✅ 已完成 | 15 |
+| 08 | [矩阵与矩阵快速幂](templates/05_math/08_matrix.hpp) | ★★ | 05_math/01 取模运算与快速幂 | ✅ 已完成 | 15 |
+| 09 | [中国剩余定理](templates/05_math/09_crt.hpp) | ★★★ | 05_math/02 GCD 与扩展欧几里得 | ✅ 已完成 | 15 |
+| 10 | [高斯消元](templates/05_math/10_gauss.hpp) | ★★★ | 05_math/08 矩阵与矩阵快速幂 | ✅ 已完成 | 15 |
+| 11 | [线性基](templates/05_math/11_linear_basis.hpp) | ★★★ | 01_basic/06 位运算 | ✅ 已完成 | 15 |
+| 12 | [数论分块（整除分块）](templates/05_math/12_number_block.hpp) | ★★★ | 无 | ✅ 已完成 | 15 |
+| 13 | [博弈论](templates/05_math/13_game.hpp) | ★★★ | 01_basic/06 位运算 | ✅ 已完成 | 15 |
+| 14 | [莫比乌斯反演](templates/05_math/14_mobius.hpp) | ★★★★ | 05_math/12 数论分块（整除分块）、05_math/07 欧拉函数与欧拉定理 | ✅ 已完成 | 15 |
+| 15 | [离散对数 BSGS](templates/05_math/15_bsgs.hpp) | ★★★★ | 05_math/04 乘法逆元 | ✅ 已完成 | 13 |
+| 16 | [Miller-Rabin 与 Pollard-Rho](templates/05_math/16_pollard_rho.hpp) | ★★★★ | 05_math/03 素数、筛法与分解质因数 | ✅ 已完成 | 8 |
+| 17 | [FFT / NTT 多项式乘法](templates/05_math/17_fft_ntt.hpp) | ★★★★ | 05_math/01 取模运算与快速幂 | ✅ 已完成 | 15 |
+| 18 | [Lucas 定理与扩展 Lucas](templates/05_math/18_lucas.hpp) | ★★★ | 05_math/05 组合数与计数原理 | ⬜ 待实现 | 6 |
+| 19 | [阶与原根](templates/05_math/19_primitive_root.hpp) | ★★★ | 05_math/07 欧拉函数与欧拉定理、05_math/01 取模运算与快速幂 | ⬜ 待实现 | 6 |
+| 20 | [卡特兰数与斯特林数](templates/05_math/20_catalan.hpp) | ★★★ | 05_math/05 组合数与计数原理 | ⬜ 待实现 | 8 |
+| 21 | [二项式反演](templates/05_math/21_binomial_inversion.hpp) | ★★★ | 05_math/05 组合数与计数原理、05_math/06 康托展开、错排与约瑟夫问题 | ✅ 已完成 | 6 |
+| 22 | [Burnside 引理与 Pólya 定理](templates/05_math/22_burnside_polya.hpp) | ★★★★ | 05_math/07 欧拉函数与欧拉定理、05_math/04 乘法逆元 | ✅ 已完成 | 7 |
+| 23 | [杜教筛](templates/05_math/23_du_sieve.hpp) | ★★★★ | 05_math/14 莫比乌斯反演 | ⬜ 待实现 | 6 |
+| 24 | [FWT（快速沃尔什变换）](templates/05_math/24_fwt.hpp) | ★★★★ | 05_math/17 FFT / NTT 多项式乘法 | ⬜ 待实现 | 6 |
+| 25 | [多项式进阶（牛顿迭代、逆元/开方/ln/exp）](templates/05_math/25_poly_ops.hpp) | ★★★★ | 05_math/17 FFT / NTT 多项式乘法 | ⬜ 待实现 | 7 |
+| 26 | [单纯形法（线性规划）](templates/05_math/26_simplex.hpp) | ★★★★ | 05_math/10 高斯消元 | ⬜ 待实现 | 6 |
+| 27 | [拉格朗日插值](templates/05_math/27_lagrange_interp.hpp) | ★★★ | 05_math/02 GCD 与扩展欧几里得、05_math/04 乘法逆元 | ⬜ 待实现 | 6 |
+
+<a id="06_dp"></a>
+
+### 06_dp 动态规划（11/16）
+
+| 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
+|---|---|---|---|---|---|
+| 01 | [线性 DP 入门与记忆化搜索](templates/06_dp/01_dp_basic.hpp) | ★ | 无 | 📝 笔记 | 15 |
+| 02 | [LIS、LCS 与编辑距离](templates/06_dp/02_lis_lcs.hpp) | ★ | 06_dp/01 线性 DP 入门与记忆化搜索、01_basic/03 二分查找、二分答案与三分 | ✅ 已完成 | 13 |
+| 03 | [背包 DP](templates/06_dp/03_knapsack.hpp) | ★★ | 06_dp/01 线性 DP 入门与记忆化搜索 | ✅ 已完成 | 15 |
+| 04 | [区间 DP](templates/06_dp/04_interval_dp.hpp) | ★★ | 06_dp/01 线性 DP 入门与记忆化搜索 | ✅ 已完成 | 15 |
+| 05 | [树形 DP 与换根 DP](templates/06_dp/05_tree_dp.hpp) | ★★ | 04_tree/01 树的基础：直径、重心、DFS 序 | ✅ 已完成 | 15 |
+| 06 | [状压 DP](templates/06_dp/06_bitmask_dp.hpp) | ★★★ | 01_basic/06 位运算 | ✅ 已完成 | 15 |
+| 07 | [数位 DP](templates/06_dp/07_digit_dp.hpp) | ★★★ | 06_dp/01 线性 DP 入门与记忆化搜索 | ✅ 已完成 | 15 |
+| 08 | [单调队列 / 单调栈优化 DP](templates/06_dp/08_dp_opt_monoqueue.hpp) | ★★★ | 02_ds/02 单调队列 | ✅ 已完成 | 15 |
+| 09 | [概率与期望 DP](templates/06_dp/09_dp_expectation.hpp) | ★★★ | 06_dp/01 线性 DP 入门与记忆化搜索 | ✅ 已完成 | 15 |
+| 10 | [斜率优化与凸包技巧](templates/06_dp/10_dp_opt_slope.hpp) | ★★★★ | 06_dp/08 单调队列 / 单调栈优化 DP | ✅ 已完成 | 15 |
+| 11 | [四边形不等式与决策单调性](templates/06_dp/11_dp_opt_quadrangle.hpp) | ★★★★ | 06_dp/04 区间 DP | ✅ 已完成 | 15 |
+| 12 | [插头 DP（轮廓线 DP）](templates/06_dp/12_plug_dp.hpp) | ★★★★ | 06_dp/06 状压 DP | ⬜ 待实现 | 6 |
+| 13 | [最小斯坦纳树](templates/06_dp/13_steiner_tree.hpp) | ★★★★ | 06_dp/06 状压 DP、03_graph/03 最短路 | ✅ 已完成 | 4 |
+| 14 | [动态 DP](templates/06_dp/14_dynamic_dp.hpp) | ★★★★ | 06_dp/05 树形 DP 与换根 DP、05_math/08 矩阵与矩阵快速幂 | ⬜ 待实现 | 6 |
+| 15 | [DP 套 DP](templates/06_dp/15_dp_of_dp.hpp) | ★★★★ | 06_dp/06 状压 DP、06_dp/01 线性 DP 入门与记忆化搜索 | ⬜ 待实现 | 6 |
+| 16 | [WQS 二分与 Slope Trick](templates/06_dp/16_wqs_slope_trick.hpp) | ★★★★ | 06_dp/10 斜率优化与凸包技巧 | ⬜ 待实现 | 7 |
+
+<a id="07_string"></a>
 
 ### 07_string 字符串（9/11）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
-| 01 | [字符串哈希](templates\07_string\01_string_hash.hpp) | ★★ | 05_math/01 取模运算与快速幂 | ✅ 已完成 | 15 |
-| 02 | [KMP 与前缀函数](templates\07_string\02_kmp.hpp) | ★★ | 无 | ✅ 已完成 | 15 |
-| 03 | [Z 函数（扩展 KMP）](templates\07_string\03_z_function.hpp) | ★★ | 07_string/02 KMP 与前缀函数 | ✅ 已完成 | 11 |
-| 04 | [Manacher 最长回文子串](templates\07_string\04_manacher.hpp) | ★★★ | 07_string/03 Z 函数（扩展 KMP） | ✅ 已完成 | 15 |
-| 05 | [最小表示法](templates\07_string\05_min_repr.hpp) | ★★★ | 无 | ✅ 已完成 | 6 |
-| 06 | [AC 自动机](templates\07_string\06_ac_automaton.hpp) | ★★★ | 02_ds/08 字典树 Trie 与 01-Trie、07_string/02 KMP 与前缀函数 | ✅ 已完成 | 15 |
-| 07 | [后缀数组](templates\07_string\07_suffix_array.hpp) | ★★★★ | 01_basic/05 排序与离散化 | ✅ 已完成 | 15 |
-| 08 | [后缀自动机（SAM）](templates\07_string\08_sam.hpp) | ★★★★ | 07_string/07 后缀数组 | ✅ 已完成 | 15 |
-| 09 | [回文自动机（PAM）](templates\07_string\09_pam.hpp) | ★★★★ | 07_string/04 Manacher 最长回文子串 | ✅ 已完成 | 12 |
-| 10 | [广义 SAM](templates\07_string\10_general_sam.hpp) | ★★★★ | 07_string/08 后缀自动机（SAM） | ⬜ 待实现 | 6 |
-| 11 | [序列自动机](templates\07_string\11_seq_automaton.hpp) | ★★★ | 07_string/08 后缀自动机（理解自动机思想） | ⬜ 待实现 | 6 |
+| 01 | [字符串哈希](templates/07_string/01_string_hash.hpp) | ★★ | 05_math/01 取模运算与快速幂 | ✅ 已完成 | 15 |
+| 02 | [KMP 与前缀函数](templates/07_string/02_kmp.hpp) | ★★ | 无 | ✅ 已完成 | 15 |
+| 03 | [Z 函数（扩展 KMP）](templates/07_string/03_z_function.hpp) | ★★ | 07_string/02 KMP 与前缀函数 | ✅ 已完成 | 11 |
+| 04 | [Manacher 最长回文子串](templates/07_string/04_manacher.hpp) | ★★★ | 07_string/03 Z 函数（扩展 KMP） | ✅ 已完成 | 15 |
+| 05 | [最小表示法](templates/07_string/05_min_repr.hpp) | ★★★ | 无 | ✅ 已完成 | 6 |
+| 06 | [AC 自动机](templates/07_string/06_ac_automaton.hpp) | ★★★ | 02_ds/08 字典树 Trie 与 01-Trie、07_string/02 KMP 与前缀函数 | ✅ 已完成 | 15 |
+| 07 | [后缀数组](templates/07_string/07_suffix_array.hpp) | ★★★★ | 01_basic/05 排序与离散化 | ✅ 已完成 | 15 |
+| 08 | [后缀自动机（SAM）](templates/07_string/08_sam.hpp) | ★★★★ | 07_string/07 后缀数组 | ✅ 已完成 | 15 |
+| 09 | [回文自动机（PAM）](templates/07_string/09_pam.hpp) | ★★★★ | 07_string/04 Manacher 最长回文子串 | ✅ 已完成 | 12 |
+| 10 | [广义 SAM](templates/07_string/10_general_sam.hpp) | ★★★★ | 07_string/08 后缀自动机（SAM） | ⬜ 待实现 | 6 |
+| 11 | [序列自动机](templates/07_string/11_seq_automaton.hpp) | ★★★ | 07_string/08 后缀自动机（SAM） | ⬜ 待实现 | 6 |
 
-### 08_geometry 计算几何（6/8）
+<a id="08_geometry"></a>
+
+### 08_geometry 计算几何（8/10）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
-| 01 | [点、向量与基本运算](templates\08_geometry\01_geo_basic.hpp) | ★★ | 无 | ✅ 已完成 | 15 |
-| 02 | [凸包](templates\08_geometry\02_convex_hull.hpp) | ★★★ | 08_geometry/01 点、向量与基本运算 | ✅ 已完成 | 15 |
-| 03 | [旋转卡壳](templates\08_geometry\03_rotating_calipers.hpp) | ★★★ | 08_geometry/02 凸包 | ✅ 已完成 | 11 |
-| 04 | [扫描线：矩形面积并](templates\08_geometry\04_scanline.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ✅ 已完成 | 15 |
-| 05 | [平面最近点对](templates\08_geometry\05_closest_pair.hpp) | ★★★ | 01_basic/10 分治 | ✅ 已完成 | 8 |
-| 06 | [半平面交](templates\08_geometry\06_half_plane.hpp) | ★★★★ | 08_geometry/01 点、向量与基本运算 | ✅ 已完成 | 11 |
-| 07 | [三维几何](templates\08_geometry\07_3d.hpp) | ★★★★ | 08_geometry/01 二维计算几何基础 | ⬜ 待实现 | 6 |
-| 08 | [最小圆覆盖](templates\08_geometry\08_min_circle.hpp) | ★★★ | 08_geometry/01 二维计算几何基础 | ⬜ 待实现 | 6 |
+| 01 | [点、向量与基本运算](templates/08_geometry/01_geo_basic.hpp) | ★★ | 无 | ✅ 已完成 | 15 |
+| 02 | [凸包](templates/08_geometry/02_convex_hull.hpp) | ★★★ | 08_geometry/01 点、向量与基本运算 | ✅ 已完成 | 15 |
+| 03 | [旋转卡壳](templates/08_geometry/03_rotating_calipers.hpp) | ★★★ | 08_geometry/02 凸包 | ✅ 已完成 | 11 |
+| 04 | [扫描线：矩形面积并](templates/08_geometry/04_scanline.hpp) | ★★★ | 02_ds/07 线段树（含懒标记） | ✅ 已完成 | 15 |
+| 05 | [平面最近点对](templates/08_geometry/05_closest_pair.hpp) | ★★★ | 01_basic/10 分治 | ✅ 已完成 | 8 |
+| 06 | [半平面交](templates/08_geometry/06_half_plane.hpp) | ★★★★ | 08_geometry/01 点、向量与基本运算 | ✅ 已完成 | 11 |
+| 07 | [圆的基本计算](templates/08_geometry/07_circle.hpp) | ★★★ | 08_geometry/01 点、向量与基本运算 | ✅ 已完成 | 6 |
+| 08 | [自适应 Simpson 积分](templates/08_geometry/08_simpson.hpp) | ★★★ | 08_geometry/07 圆的基本计算 | ✅ 已完成 | 4 |
+| 09 | [三维几何](templates/08_geometry/09_3d.hpp) | ★★★★ | 08_geometry/01 点、向量与基本运算 | ⬜ 待实现 | 6 |
+| 10 | [最小圆覆盖](templates/08_geometry/10_min_circle.hpp) | ★★★ | 08_geometry/01 点、向量与基本运算 | ⬜ 待实现 | 6 |
+
+<a id="09_misc"></a>
 
 ### 09_misc 杂项（2/4）
 
 | 编号 | 内容 | 难度 | 前置 | 状态 | 题单 |
 |---|---|---|---|---|---|
-| 01 | [随机数与防卡哈希](templates\09_misc\01_random_hash.hpp) | ★★ | 无 | ✅ 已完成 | 15 |
-| 02 | [交互题](templates\09_misc\02_interactive.hpp) | ★★ | 01_basic/03 二分查找、二分答案与三分 | 📝 笔记 | 15 |
-| 03 | [模拟退火](templates\09_misc\03_simulated_annealing.hpp) | ★★★ | 09_misc/01 随机数与防卡哈希 | ✅ 已完成 | 15 |
-| 04 | [折半搜索 / Meet in the Middle](templates\09_misc\04_meet_in_middle.hpp) | ★★ | 01_basic/03 二分查找、01_basic/12 搜索 | ⬜ 待实现 | 7 |
+| 01 | [随机数与防卡哈希](templates/09_misc/01_random_hash.hpp) | ★★ | 无 | ✅ 已完成 | 15 |
+| 02 | [交互题](templates/09_misc/02_interactive.hpp) | ★★ | 01_basic/03 二分查找、二分答案与三分 | 📝 笔记 | 15 |
+| 03 | [模拟退火](templates/09_misc/03_simulated_annealing.hpp) | ★★★ | 09_misc/01 随机数与防卡哈希 | ✅ 已完成 | 15 |
+| 04 | [折半搜索 / Meet in the Middle](templates/09_misc/04_meet_in_middle.hpp) | ★★ | 01_basic/03 二分查找、二分答案与三分、01_basic/12 搜索：DFS、BFS、剪枝 | ⬜ 待实现 | 7 |
 
 <!-- INDEX:END -->
 

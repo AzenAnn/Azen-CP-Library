@@ -7,7 +7,7 @@
  * 【学习顺序】
  *   1. 字符串 Trie：插入、前缀计数
  *   2. 01-Trie：最大异或对
- *   3. 可持久化 Trie（见 02_ds/13）
+ *   3. 可持久化 Trie（见 02_ds/15）
  *
  * 【学习资料】
  *   OI-wiki        https://oi-wiki.org/string/trie/
